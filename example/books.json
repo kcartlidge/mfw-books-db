@@ -1,0 +1,42 @@
+[
+  {
+    "isbn": "9780356517186",
+    "title": "Some Desperate Glory",
+    "authors": "Emily Tesh",
+    "authorSort": "Tesh, Emily",
+    "series": null,
+    "sequence": null,
+    "genre": [
+      "Science Fiction"
+    ],
+    "link": "https://books.google.com/books?id=fMSLzgEACAAJ\u0026dq=isbn:9780356517186",
+    "isException": false,
+    "exceptionReason": "",
+    "modifiedUtc": "2025-04-23T18:07:40.615828Z",
+    "status": "U - Unread",
+    "rating": null,
+    "notes": "",
+    "statusIcon": "U",
+    "seriesSort": ""
+  },
+  {
+    "isbn": "9780356500720",
+    "title": "Shadow\u0027s Edge",
+    "authors": "Brent Weeks",
+    "authorSort": "Weeks, Brent",
+    "series": "Night Angel",
+    "sequence": "2",
+    "genre": [
+      "Fantasy"
+    ],
+    "link": "https://books.google.com/books?id=5U5VewAACAAJ\u0026dq=isbn:9780356500720",
+    "isException": false,
+    "exceptionReason": "",
+    "modifiedUtc": "2025-04-27T17:32:36.423671Z",
+    "status": "N - Next up",
+    "rating": null,
+    "notes": null,
+    "statusIcon": "N",
+    "seriesSort": "Night Angel [2]"
+  }
+]
