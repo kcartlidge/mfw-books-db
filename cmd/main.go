@@ -25,12 +25,21 @@ func main() {
 	fmt.Printf("Found %d book(s) in the database\n", len(books))
 	fmt.Println()
 
+	// Create a map of existing books by ISBN for quick lookup
+	existingBooks := make(map[string]Book)
+	for _, book := range books {
+		existingBooks[book.ISBN] = book
+	}
+
 	// Load the ISBNs from the text file
 	isbnsFile := filepath.Join(filepath.Dir(jsonFile), "isbns.txt")
 	fmt.Println("Loading ISBNs from", isbnsFile)
 	isbns := LoadISBNs(isbnsFile)
 	fmt.Printf("Found %d ISBN(s) to process\n", len(isbns))
 	fmt.Println()
+
+	// Process the ISBNs
+	ProcessISBNs(isbns, existingBooks)
 }
 
 // check is a helper function to check for errors and exit the program if an error occurs
