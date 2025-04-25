@@ -16,6 +16,8 @@ type Grid struct {
 	rows        [][]string
 	widths      []int
 	showHeaders bool
+	showNumbers bool
+	numberWidth int
 }
 
 // NewGrid creates a new Grid with the given column headers
@@ -23,7 +25,9 @@ func NewGrid(headers []string) *Grid {
 	g := &Grid{
 		headers:     headers,
 		widths:      make([]int, len(headers)),
-		showHeaders: true, // Default to showing headers
+		showHeaders: true,  // Default to showing headers
+		showNumbers: false, // Default to not showing row numbers
+		numberWidth: 0,     // Will be calculated when needed
 	}
 	// Initialize widths based on headers
 	for i, header := range headers {
@@ -35,6 +39,11 @@ func NewGrid(headers []string) *Grid {
 // SetShowHeaders sets whether headers should be displayed
 func (g *Grid) SetShowHeaders(show bool) {
 	g.showHeaders = show
+}
+
+// SetShowNumbers sets whether row numbers should be displayed
+func (g *Grid) SetShowNumbers(show bool) {
+	g.showNumbers = show
 }
 
 // AddRow adds a row of cells to the grid
@@ -58,8 +67,18 @@ func (g *Grid) AddRow(cells ...string) {
 func (g *Grid) String() string {
 	var sb strings.Builder
 
+	// Calculate number width if showing numbers
+	if g.showNumbers {
+		// Calculate width needed for the largest row number
+		maxNum := len(g.rows)
+		g.numberWidth = len(fmt.Sprintf("%d", maxNum)) + ColumnPadding
+	}
+
 	if g.showHeaders {
 		// Print headers
+		if g.showNumbers {
+			sb.WriteString(strings.Repeat(" ", g.numberWidth))
+		}
 		for i, header := range g.headers {
 			if i > 0 {
 				sb.WriteString(strings.Repeat(" ", ColumnPadding))
@@ -69,6 +88,9 @@ func (g *Grid) String() string {
 		sb.WriteString("\n")
 
 		// Print separator
+		if g.showNumbers {
+			sb.WriteString(strings.Repeat("-", g.numberWidth))
+		}
 		for i, width := range g.widths {
 			if i > 0 {
 				sb.WriteString(strings.Repeat("-", ColumnPadding))
@@ -79,7 +101,10 @@ func (g *Grid) String() string {
 	}
 
 	// Print rows
-	for _, row := range g.rows {
+	for rowNum, row := range g.rows {
+		if g.showNumbers {
+			fmt.Fprintf(&sb, "%*d%s", g.numberWidth-ColumnPadding, rowNum+1, strings.Repeat(" ", ColumnPadding))
+		}
 		for i, cell := range row {
 			if i > 0 {
 				sb.WriteString(strings.Repeat(" ", ColumnPadding))

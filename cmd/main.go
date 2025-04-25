@@ -8,7 +8,8 @@ import (
 
 func main() {
 	fmt.Println()
-	fmt.Println("MFW BOOKS DATABASE v0.0.1")
+	fmt.Println()
+	fmt.Println("MFW BOOKS DATABASE v1.0.0")
 	fmt.Println()
 
 	// Check if a filename was provided as an argument
@@ -25,30 +26,31 @@ func main() {
 	fmt.Printf("Found %d book(s) in the database\n", len(books))
 	fmt.Println()
 
-	// Create a map of existing books by ISBN for quick lookup
-	existingBooks := make(map[string]Book)
-	for _, book := range books {
-		existingBooks[book.ISBN] = book
-	}
-
 	// Load the ISBNs from the text file
 	isbnsFile := filepath.Join(filepath.Dir(jsonFile), "isbns.txt")
 	fmt.Println("Loading ISBNs from", isbnsFile)
 	isbns := LoadISBNs(isbnsFile)
-	fmt.Printf("Found %d ISBN(s) to process\n", len(isbns))
+	fmt.Printf("Found %d ISBN(s) to consider for processing\n", len(isbns))
+	fmt.Println("Only new ISBNs will be processed")
 	fmt.Println()
 
 	// Process the ISBNs
-	ProcessISBNs(isbns, existingBooks)
-}
+	books = ProcessISBNs(isbns, books)
 
-// check is a helper function to check for errors and exit the program if an error occurs
-func check(err error) {
-	if err != nil {
+	// Save the updated books
+	// Only save if we have more books than we started with
+	if len(books) > len(LoadFile(jsonFile)) {
+		if err := SaveFile(jsonFile, books); err != nil {
+			fmt.Println()
+			fmt.Println("ERROR saving file")
+			fmt.Println(err.Error())
+			fmt.Println()
+			os.Exit(1)
+		}
+		fmt.Println("Saved books to", jsonFile)
 		fmt.Println()
-		fmt.Println("ERROR")
-		fmt.Println(err.Error())
-		fmt.Println()
-		os.Exit(1)
 	}
+	fmt.Println("Done.")
+	fmt.Println()
+	fmt.Println()
 }

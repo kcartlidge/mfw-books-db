@@ -1,42 +1,323 @@
 [
   {
-    "isbn": "9780356517186",
-    "title": "Some Desperate Glory",
-    "authors": "Emily Tesh",
-    "authorSort": "Tesh, Emily",
-    "series": null,
-    "sequence": null,
-    "genre": [
-      "Science Fiction"
+    "isbn": "9780356500713",
+    "title": "The Way of Shadows",
+    "authors": [
+      "Brent Weeks"
     ],
-    "link": "https://books.google.com/books?id=fMSLzgEACAAJ\u0026dq=isbn:9780356517186",
-    "isException": false,
-    "exceptionReason": "",
-    "modifiedUtc": "2025-04-23T18:07:40.615828Z",
-    "status": "U - Unread",
-    "rating": null,
+    "genre": [
+      "Assassins"
+    ],
+    "link": "https://www.googleapis.com/books/v1/volumes/cU9GYgEACAAJ",
+    "publishedDate": "2011",
+    "publisher": "Orbit Books",
+    "pageCount": 0,
+    "language": "en",
+    "description": "The first instalment in an astonishing and epic tale of magic, violence and revenge.",
+    "authorSort": [
+      "Weeks, Brent"
+    ],
+    "series": "",
+    "sequence": "",
+    "status": "Unread",
+    "rating": 0,
     "notes": "",
     "statusIcon": "U",
+    "modifiedUtc": "2025-04-28T13:56:38Z",
+    "isException": false,
+    "exceptionReason": "",
     "seriesSort": ""
   },
   {
-    "isbn": "9780356500720",
-    "title": "Shadow\u0027s Edge",
-    "authors": "Brent Weeks",
-    "authorSort": "Weeks, Brent",
-    "series": "Night Angel",
-    "sequence": "2",
+    "isbn": "9780552554763",
+    "title": "Pawn of Prophecy",
+    "authors": [
+      "David Eddings"
+    ],
+    "genre": [
+      "Fiction"
+    ],
+    "link": "https://www.googleapis.com/books/v1/volumes/mlJEvy0fe0AC",
+    "publishedDate": "2006",
+    "publisher": "Random House",
+    "pageCount": 354,
+    "language": "en",
+    "description": "Garion the farm boy did not believe in magic dooms, but then he did not know that soon he would be on a quest of unparalleled magic and danger when the dread evil God Torak was reawakened.",
+    "authorSort": [
+      "Eddings, David"
+    ],
+    "series": "",
+    "sequence": "",
+    "status": "Unread",
+    "rating": 0,
+    "notes": "",
+    "statusIcon": "U",
+    "modifiedUtc": "2025-04-28T13:56:39Z",
+    "isException": false,
+    "exceptionReason": "",
+    "seriesSort": ""
+  },
+  {
+    "isbn": "9780552554770",
+    "title": "Queen of Sorcery",
+    "authors": [
+      "David Eddings"
+    ],
     "genre": [
       "Fantasy"
     ],
-    "link": "https://books.google.com/books?id=5U5VewAACAAJ\u0026dq=isbn:9780356500720",
+    "link": "https://www.googleapis.com/books/v1/volumes/k2N0PwAACAAJ",
+    "publishedDate": "2006",
+    "publisher": "Corgi Childrens",
+    "pageCount": 0,
+    "language": "en",
+    "description": "Legends tell how the evil god Torak was imprisoned in a centuries-old slumber, unable to awaken without the Orb of Aldur - an object of almost unimaginable power. But, now a renegade priest has stolen the Orb and is trying to reawaken the maimed god. Following his trial are Belgarath, the sorcerer and his daughter, Polgara. Ages 10+.",
+    "authorSort": [
+      "Eddings, David"
+    ],
+    "series": "",
+    "sequence": "",
+    "status": "Unread",
+    "rating": 0,
+    "notes": "",
+    "statusIcon": "U",
+    "modifiedUtc": "2025-04-28T13:56:39Z",
     "isException": false,
     "exceptionReason": "",
-    "modifiedUtc": "2025-04-27T17:32:36.423671Z",
-    "status": "N - Next up",
-    "rating": null,
-    "notes": null,
-    "statusIcon": "N",
-    "seriesSort": "Night Angel [2]"
+    "seriesSort": ""
+  },
+  {
+    "isbn": "033026656X",
+    "title": "The Many-colored Land",
+    "authors": [
+      "Julian May"
+    ],
+    "genre": [
+      "Fantasy fiction"
+    ],
+    "link": "https://www.googleapis.com/books/v1/volumes/WwB7QgAACAAJ",
+    "publishedDate": "1982",
+    "publisher": "",
+    "pageCount": 411,
+    "language": "en",
+    "description": "This is the first book in The Saga of the Exiles series. Among the misfits and mavericks of the 22nd century, there are those who pass through the time-doors of the Pliocene Epoch into the battleground of two warring races from a planet far away.",
+    "authorSort": [
+      "May, Julian"
+    ],
+    "series": "",
+    "sequence": "",
+    "status": "Unread",
+    "rating": 0,
+    "notes": "",
+    "statusIcon": "U",
+    "modifiedUtc": "2025-04-28T13:56:39Z",
+    "isException": false,
+    "exceptionReason": "",
+    "seriesSort": ""
+  },
+  {
+    "isbn": "9780552554787",
+    "title": "Magician's Gambit",
+    "authors": [
+      "David Eddings"
+    ],
+    "genre": [
+      "Fiction"
+    ],
+    "link": "https://www.googleapis.com/books/v1/volumes/tcDTDL8pxO8C",
+    "publishedDate": "2006",
+    "publisher": "Random House",
+    "pageCount": 451,
+    "language": "en",
+    "description": "Volume 3.",
+    "authorSort": [
+      "Eddings, David"
+    ],
+    "series": "",
+    "sequence": "",
+    "status": "Unread",
+    "rating": 0,
+    "notes": "",
+    "statusIcon": "U",
+    "modifiedUtc": "2025-04-28T13:56:39Z",
+    "isException": false,
+    "exceptionReason": "",
+    "seriesSort": ""
+  },
+  {
+    "isbn": "9780356500270",
+    "title": "Storm Front",
+    "authors": [
+      "Jim Butcher"
+    ],
+    "genre": [
+      "Dresden, Harry (Fictitious character)"
+    ],
+    "link": "https://www.googleapis.com/books/v1/volumes/LL-9cQAACAAJ",
+    "publishedDate": "2011",
+    "publisher": "Orbit Books",
+    "pageCount": 0,
+    "language": "en",
+    "description": "Meet Harry Dresden, Chicago's first (and only) Wizard P.I. Turns out the 'everyday' world is full of strange and magical things - and most of them don't play well with humans. That's where Harry comes in.Harry is the best at what he does - and not just because he's the only one who does it. So when the Chicago P.D. has a case that transcends mortal capabilities, they look to him for answers. There's just one problem. Business, to put it mildly, stinks. So when the police bring him in to consult on a grisly double murder committed with black magic, Harry's seeing dollar signs. But where there's black magic, there's a black mage behind it. And now that mage knows Harry's name. And that's when things start to get . . . interesting. Magic - it can get a guy killed.",
+    "authorSort": [
+      "Butcher, Jim"
+    ],
+    "series": "",
+    "sequence": "",
+    "status": "Unread",
+    "rating": 0,
+    "notes": "",
+    "statusIcon": "U",
+    "modifiedUtc": "2025-04-28T13:56:40Z",
+    "isException": false,
+    "exceptionReason": "",
+    "seriesSort": ""
+  },
+  {
+    "isbn": "9780552997775",
+    "title": "The Sparrow",
+    "authors": [
+      "Mary Doria Russell"
+    ],
+    "genre": [
+      "Fiction"
+    ],
+    "link": "https://www.googleapis.com/books/v1/volumes/OdjZ3iREFs0C",
+    "publishedDate": "1997",
+    "publisher": "Random House",
+    "pageCount": 515,
+    "language": "en",
+    "description": "\"Set in the 21st century - between 20 and 60 years from now - The Sparrow is the story of a charismatic Jesuit priest and talented linguist, Emilio Sandoz, who - in response to a remarkable radio signal from the depths of space - leads a scientific mission to make first contact with an extraterrestrial culture. In the true tradition of Jesuit adventurers before him, Sandoz and his companions are prepared to endure isolation, suffering - even death - but nothing can prepare them for the civilisation they encounter, or for the tragic misunderstanding that brings the mission to a devastating end. Once considered a living saint, Sandoz returns alone to Earth horrifically maimed, both physically and spiritually, the mission s sole survivor - only to be blamed for the mission s failure and accused of heinous crimes. Written in clean, effortless prose and peopled with memorable, superbly-realised characters who never lose their humanity or humour, The Sparrow is a powerful, haunting fiction - a tragic but ultimately triumphant novel about the nature of faith, of love and what it means to be human .\"",
+    "authorSort": [
+      "Russell, Mary Doria"
+    ],
+    "series": "",
+    "sequence": "",
+    "status": "Unread",
+    "rating": 0,
+    "notes": "",
+    "statusIcon": "U",
+    "modifiedUtc": "2025-04-28T13:56:41Z",
+    "isException": false,
+    "exceptionReason": "",
+    "seriesSort": ""
+  },
+  {
+    "isbn": "9780571342211",
+    "title": "The Children of Men",
+    "authors": [
+      "P.d. James"
+    ],
+    "genre": null,
+    "link": "https://www.googleapis.com/books/v1/volumes/f6SbtAEACAAJ",
+    "publishedDate": "2018-04-05",
+    "publisher": "",
+    "pageCount": 352,
+    "language": "en",
+    "description": "The year is 2021. No child has been born for twenty-five years. The human race faces extinction. Under the despotic rule of Xan Lyppiat, the Warden of England, the old are despairing and the young cruel. Theo Faren, a cousin of the Warden, lives a solitary life in this ominous atmosphere. That is, until a chance encounter with a young woman leads him into contact with a group of dissenters. Suddenly his life is changed irrevocably as he faces agonising choices which could affect the future of mankind.",
+    "authorSort": [
+      "James, P.d."
+    ],
+    "series": "",
+    "sequence": "",
+    "status": "Unread",
+    "rating": 0,
+    "notes": "",
+    "statusIcon": "U",
+    "modifiedUtc": "2025-04-28T13:56:41Z",
+    "isException": false,
+    "exceptionReason": "",
+    "seriesSort": ""
+  },
+  {
+    "isbn": "9780241956304",
+    "title": "Trouble is My Business",
+    "authors": [
+      "Raymond Chandler",
+      "Karin Slaughter"
+    ],
+    "genre": [
+      "Fiction"
+    ],
+    "link": "https://www.googleapis.com/books/v1/volumes/8G34nAEACAAJ",
+    "publishedDate": "2013",
+    "publisher": "Penguin Group",
+    "pageCount": 0,
+    "language": "en",
+    "description": "In 'Trouble is My Business', Philip Marlowe's forerunner, private eye John Dalmas, gets to stand between a gambler and a rich man. The play-off is drinking good Scotch with Harriet Huntress - the woman giving each of them grief.",
+    "authorSort": [
+      "Chandler, Raymond",
+      "Slaughter, Karin"
+    ],
+    "series": "",
+    "sequence": "",
+    "status": "Unread",
+    "rating": 0,
+    "notes": "",
+    "statusIcon": "U",
+    "modifiedUtc": "2025-04-28T13:59:05Z",
+    "isException": false,
+    "exceptionReason": "",
+    "seriesSort": ""
+  },
+  {
+    "isbn": "9781841499895",
+    "title": "Leviathan Wakes",
+    "authors": [
+      "James S. A. Corey"
+    ],
+    "genre": [
+      "Fiction"
+    ],
+    "link": "https://www.googleapis.com/books/v1/volumes/HlWakgEACAAJ",
+    "publishedDate": "2012",
+    "publisher": "Orbit Books",
+    "pageCount": 561,
+    "language": "en",
+    "description": "NOW A PRIME ORIGINAL SERIES 'The science fictional equivalent of A Song of Ice and Fire' NPR Books Leviathan Wakes is the Hugo-nominated first book in the New York Times bestselling Expanse series. Humanity has colonised the solar system - Mars, the Moon, the Asteroid Belt and beyond - but the stars are still out of our reach. Jim Holden is an officer on an ice miner making runs from the rings of Saturn to the mining stations of the Belt. When he and his crew discover a derelict ship called the Scopuli, they suddenly find themselves in possession of a deadly secret. A secret that someone is willing to kill for, and on an unimaginable scale. War is coming to the system, unless Jim can find out who abandoned the ship and why. Detective Miller is looking for a girl. One girl in a system of billions, but her parents have money - and money talks. When the trail leads him to the Scopuli and Holden, they both realise this girl may hold the key to everything. Holden and Miller must thread the needle between the Earth government, the Outer Planet revolutionaries and secret corporations, and the odds are against them. But out in the Belt, the rules are different, and one small ship can change the fate of the universe. The Expanse series has sold over two million copies worldwide and is now a major television series. The Expanse series: Leviathan Wakes Caliban's War Abaddon's Gate Cibola Burn Nemesis Games Babylon's Ashes Persepolis Rising Tiamat's Wrath Praise for the Expanse: 'As close as you'll get to a Hollywood blockbuster in book form' io9.com 'Great characters, excellent dialogue, memorable fights' wired.com 'High adventure equalling the best space opera has to offer, cutting-edge technology and a group of unforgettable characters . . . Perhaps one of the best tales the genre has yet to produce' Library Journal 'This is the future the way it's supposed to be' Wall Street Journal 'Tense and thrilling' SciFiNow",
+    "authorSort": [
+      "Corey, James S. A."
+    ],
+    "series": "",
+    "sequence": "",
+    "status": "Unread",
+    "rating": 0,
+    "notes": "",
+    "statusIcon": "U",
+    "modifiedUtc": "2025-04-28T13:59:06Z",
+    "isException": false,
+    "exceptionReason": "",
+    "seriesSort": ""
+  },
+  {
+    "isbn": "9781840463910",
+    "title": "Creature of Havoc",
+    "authors": [
+      "Steve Jackson",
+      "Ian Livingstone"
+    ],
+    "genre": [
+      "Juvenile Fiction"
+    ],
+    "link": "https://www.googleapis.com/books/v1/volumes/9ax_AAAACAAJ",
+    "publishedDate": "2002",
+    "publisher": "Gardners Books",
+    "pageCount": 192,
+    "language": "en",
+    "description": "Evil is festering in Trolltooth Pass. The Necromancer Zharradan Marr is close to stealing the secrets of Elven magic, which will make him invicible. But what does the Creature of Hovac know or care about all this? Who controls this foul beast? In this adventure, the Creature of Havoc is you. For ages 8 +.",
+    "authorSort": [
+      "Jackson, Steve",
+      "Livingstone, Ian"
+    ],
+    "series": "",
+    "sequence": "",
+    "status": "Unread",
+    "rating": 0,
+    "notes": "",
+    "statusIcon": "U",
+    "modifiedUtc": "2025-04-28T13:59:06Z",
+    "isException": false,
+    "exceptionReason": "",
+    "seriesSort": ""
   }
 ]

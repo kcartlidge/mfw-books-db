@@ -53,3 +53,6 @@ vendor/
 
 # Log files
 *.log
+
+# Backup book files
+example/backups/*

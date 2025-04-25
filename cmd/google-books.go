@@ -2,10 +2,10 @@ package main
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"net/http"
 	"net/url"
-	"strings"
 )
 
 // GoogleBook represents the book data we get from Google Books API
@@ -53,7 +53,7 @@ func GetBookByISBN(isbn string) (*GoogleBook, error) {
 
 	// Check if the response contains any items
 	if len(result.Items) == 0 {
-		return nil, fmt.Errorf("no book found for ISBN %s", isbn)
+		return nil, errors.New("no book found")
 	}
 
 	// Get the first item from the response
@@ -69,7 +69,7 @@ func MapGoogleBookToBook(gb *GoogleBook) *Book {
 	book := &Book{
 		ISBN:            getISBNFromIdentifiers(gb.IndustryIdentifiers),
 		Title:           gb.Title,
-		Authors:         strings.Join(gb.Authors, ", "),
+		Authors:         gb.Authors,
 		Genre:           gb.Categories,
 		Link:            gb.Link,
 		PublishedDate:   gb.PublishedDate,
@@ -77,7 +77,7 @@ func MapGoogleBookToBook(gb *GoogleBook) *Book {
 		PageCount:       gb.PageCount,
 		Language:        gb.Language,
 		Description:     gb.Description,
-		AuthorSort:      "",
+		AuthorSort:      []string{},
 		Series:          "",
 		Sequence:        "",
 		Status:          "",
