@@ -9,14 +9,18 @@ import (
 // ProcessISBNs takes a slice of ISBNs and queries Google Books for each one
 func ProcessISBNs(isbns []string, books []Book) []Book {
 	// Create a grid to track all books
-	grid := NewGrid([]string{"ISBN", "New?", "Title", "Author", "Error"})
+	grid := NewGrid([]string{"ISBN", "NEW?", "TITLE", "AUTHORS", "ERROR"})
 	grid.SetShowNumbers(true)
 
 	// Track counts
 	var newCount, matchedCount, errorCount int
 	originalCount := len(books)
 
-	for _, isbn := range isbns {
+	fmt.Print("Processing:")
+	for i, isbn := range isbns {
+		if i%5 == 0 {
+			fmt.Printf(" %d", i)
+		}
 		// Check if we already have this book
 		found := false
 		for _, book := range books {
@@ -25,7 +29,7 @@ func ProcessISBNs(isbns []string, books []Book) []Book {
 					isbn,
 					"-",
 					book.Title,
-					book.GetAuthorDisplay(),
+					book.GetAuthorSortDisplay(),
 					book.ExceptionReason,
 				)
 				matchedCount++
@@ -67,12 +71,17 @@ func ProcessISBNs(isbns []string, books []Book) []Book {
 			isbn,
 			"Yes",
 			book.Title,
-			book.GetAuthorDisplay(),
+			book.GetAuthorSortDisplay(),
 			"",
 		)
 		books = append(books, book)
 		newCount++
 	}
+	if len(isbns)%5 != 0 {
+		fmt.Printf(" %d", len(isbns))
+	}
+	fmt.Println()
+	fmt.Println()
 
 	// Print the grid
 	fmt.Println(grid)
@@ -90,22 +99,11 @@ func ProcessISBNs(isbns []string, books []Book) []Book {
 
 // mapGoogleBook converts a GoogleBook to our Book model
 func mapGoogleBook(isbn string, gb *GoogleBook) Book {
-	// Create author sort strings (last name, first name) for each author
-	authorSorts := make([]string, len(gb.Authors))
-	for i, author := range gb.Authors {
-		parts := strings.Split(author, " ")
-		if len(parts) > 1 {
-			authorSorts[i] = fmt.Sprintf("%s, %s", parts[len(parts)-1], strings.Join(parts[:len(parts)-1], " "))
-		} else {
-			authorSorts[i] = author
-		}
-	}
-
 	return Book{
 		ISBN:          isbn,
-		Title:         gb.Title,
+		Title:         fixTitle(gb.Title),
 		Authors:       gb.Authors,
-		AuthorSort:    authorSorts,
+		AuthorSort:    fixAuthorSorts(gb.Authors),
 		Genre:         gb.Categories,
 		Link:          gb.Link,
 		IsException:   false,
@@ -118,4 +116,63 @@ func mapGoogleBook(isbn string, gb *GoogleBook) Book {
 		Language:      gb.Language,
 		Description:   gb.Description,
 	}
+}
+
+// fixTitle moves "The " from the start to the end of the title
+func fixTitle(title string) string {
+	if strings.HasPrefix(title, "The ") {
+		return fmt.Sprintf("%s, the", title[4:])
+	}
+	return title
+}
+
+// fixAuthorSorts creates author sort strings (last name, first name) for each author
+// This is not internationalised, so it only works for English
+// It also handles initials (with or without periods)
+func fixAuthorSorts(authors []string) []string {
+	sorts := []string{}
+
+	// Process each author
+	for _, author := range authors {
+		// Get all the author segments
+		segments := []string{}
+		for _, p := range strings.Split(author, " ") {
+			if len(p) > 0 {
+				if strings.Contains(p, ".") {
+					// Initials should be capitalised and the period removed
+					segments = append(segments, strings.ToUpper(strings.TrimSpace(strings.ReplaceAll(p, ".", ""))))
+				} else {
+					segments = append(segments, strings.TrimSpace(p))
+				}
+			}
+		}
+
+		// Generate the resulting name
+		if len(segments) == 1 {
+			// Single segment, so just use the name
+			sorts = append(sorts, segments[0])
+		} else {
+			// Start with the last name
+			name := segments[len(segments)-1] + ","
+
+			// Multiple segments, so we need to figure out the initials
+			last := ""
+			for _, segment := range segments[:len(segments)-1] {
+				if len(last) != 1 {
+					name += " "
+				}
+				// Capitalise single letter initials
+				if len(segment) == 1 {
+					segment = strings.ToUpper(segment)
+				}
+				name += segment
+				last = segment
+			}
+
+			// Add the name to the list
+			sorts = append(sorts, name)
+		}
+	}
+
+	return sorts
 }

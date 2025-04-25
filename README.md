@@ -18,12 +18,10 @@ ISBNs can be scanned in via mobile apps like [Alfa ISBN Scanner](https://www.alf
 
 ## Features
 
-- Fetches book metadata from both Google Books and Open Library APIs
-- Combines data from both sources for comprehensive information
-- Handles rate limits and retries automatically
+- Fetches book metadata from Google Books
 - Maintains a collection in JSON format
 - Skips ISBNs already successfully fetched previously
-- Sanitizes JSON file by removing books without ISBNs
+- Tidies title and authors for better auto-content
 
 ## API Rate Limits
 
@@ -31,13 +29,6 @@ ISBNs can be scanned in via mobile apps like [Alfa ISBN Scanner](https://www.alf
 - Free tier: 1,000 requests per day
 - No authentication required for basic queries
 - No per-second rate limit specified
-
-### Open Library API
-- No official rate limit documented
-- Recommended limits:
-    - Maximum 20 requests per second
-    - Cache results when possible
-    - Use appropriate delays between requests
 
 ## Program Rate Limiting
 

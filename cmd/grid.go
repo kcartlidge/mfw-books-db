@@ -8,6 +8,7 @@ import (
 const (
 	ColumnPadding = 3
 	MaxCellWidth  = 50
+	LineChar      = "="
 )
 
 // Grid represents a table of text content with fixed columns
@@ -89,13 +90,13 @@ func (g *Grid) String() string {
 
 		// Print separator
 		if g.showNumbers {
-			sb.WriteString(strings.Repeat("-", g.numberWidth))
+			sb.WriteString(strings.Repeat(LineChar, g.numberWidth))
 		}
 		for i, width := range g.widths {
 			if i > 0 {
-				sb.WriteString(strings.Repeat("-", ColumnPadding))
+				sb.WriteString(strings.Repeat(LineChar, ColumnPadding))
 			}
-			sb.WriteString(strings.Repeat("-", width))
+			sb.WriteString(strings.Repeat(LineChar, width))
 		}
 		sb.WriteString("\n")
 	}
