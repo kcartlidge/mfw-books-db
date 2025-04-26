@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"time"
 )
 
 // GoogleBook represents the book data we get from Google Books API
@@ -33,35 +34,60 @@ func GetBookByISBN(isbn string) (*GoogleBook, error) {
 	params := url.Values{}
 	params.Add("q", query)
 
-	// Make the request to the Google Books API
-	resp, err := http.Get(fmt.Sprintf("%s?%s", baseURL, params.Encode()))
-	if err != nil {
-		return nil, err
-	}
-	defer resp.Body.Close()
+	// Rate limiting: 333ms delay between requests (3 requests per second)
+	time.Sleep(333 * time.Millisecond)
 
-	// Decode the response into a struct
-	var result struct {
-		Items []struct {
-			VolumeInfo GoogleBook `json:"volumeInfo"`
-			SelfLink   string     `json:"selfLink"`
-		} `json:"items"`
-	}
-	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
-		return nil, err
+	// Up to 3 retries for failed requests
+	var lastErr error
+	for retry := 0; retry < 3; retry++ {
+		// Make the request to the Google Books API
+		resp, err := http.Get(fmt.Sprintf("%s?%s", baseURL, params.Encode()))
+		if err != nil {
+			lastErr = err
+			// 2-second delay between retries
+			time.Sleep(2 * time.Second)
+			continue
+		}
+
+		// Handle rate limit errors (HTTP 429)
+		if resp.StatusCode == http.StatusTooManyRequests {
+			resp.Body.Close()
+			lastErr = errors.New("rate limit exceeded")
+			// 2-second delay between retries
+			time.Sleep(2 * time.Second)
+			continue
+		}
+
+		// Decode the response into a struct
+		var result struct {
+			Items []struct {
+				VolumeInfo GoogleBook `json:"volumeInfo"`
+				SelfLink   string     `json:"selfLink"`
+			} `json:"items"`
+		}
+		if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
+			resp.Body.Close()
+			lastErr = err
+			// 2-second delay between retries
+			time.Sleep(2 * time.Second)
+			continue
+		}
+		resp.Body.Close()
+
+		// Check if the response contains any items
+		if len(result.Items) == 0 {
+			return nil, errors.New("no book found")
+		}
+
+		// Get the first item from the response
+		book := result.Items[0].VolumeInfo
+		book.Link = result.Items[0].SelfLink
+
+		// Return the book
+		return &book, nil
 	}
 
-	// Check if the response contains any items
-	if len(result.Items) == 0 {
-		return nil, errors.New("no book found")
-	}
-
-	// Get the first item from the response
-	book := result.Items[0].VolumeInfo
-	book.Link = result.Items[0].SelfLink
-
-	// Return the book
-	return &book, nil
+	return nil, lastErr
 }
 
 // MapGoogleBookToBook maps a Google Book API response to our Book struct
