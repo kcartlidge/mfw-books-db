@@ -100,3 +100,30 @@ func LoadISBNs(filename string) []string {
 
 	return isbns
 }
+
+// ClearErroredBooks removes books marked as exceptions from the file
+func ClearErroredBooks(filename string) (int, error) {
+	// Load the current books
+	books := LoadFile(filename)
+	originalCount := len(books)
+
+	// Remove errored books in-place
+	i := 0
+	for _, book := range books {
+		if !book.IsException {
+			books[i] = book
+			i++
+		}
+	}
+	books = books[:i]
+
+	// Save if we removed any books
+	if len(books) < originalCount {
+		if err := SaveFile(filename, books); err != nil {
+			return 0, err
+		}
+		return originalCount - len(books), nil
+	}
+
+	return 0, nil
+}
