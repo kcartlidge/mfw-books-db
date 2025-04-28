@@ -4,7 +4,6 @@ import (
 	"errors"
 	"fmt"
 	"os"
-	"path/filepath"
 )
 
 func main() {
@@ -15,6 +14,7 @@ func main() {
 	// Parse command line arguments
 	parser := NewArgsParser()
 	parser.AddArgument("file", "JSON file containing book data", "", true)
+	parser.AddArgument("isbns", "Text file containing ISBNs to process", "", false)
 	parser.AddFlag("clear-errors", "Removes errored ISBNs so they retry")
 	parser.ShowUsage()
 	parser.Parse(os.Args[1:])
@@ -57,27 +57,30 @@ func main() {
 	}
 
 	// Load the ISBNs from the text file
-	isbnsFile := filepath.Join(filepath.Dir(jsonFile), "isbns.txt")
-	fmt.Println("Loading ISBNs from", isbnsFile)
-	isbns := LoadISBNs(isbnsFile)
-	fmt.Printf("Found %d ISBN(s) to consider for processing\n", len(isbns))
-	fmt.Println("Only new ISBNs will be processed")
-	fmt.Println()
-
-	// Process the ISBNs
-	books = ProcessISBNs(isbns, books)
-
-	// Save the updated books
-	// Only save if we have more books than we started with
-	if len(books) > len(LoadFile(jsonFile)) {
-		if err := SaveFile(jsonFile, books); err != nil {
-			fmt.Println()
-			fmt.Println("ERROR saving file")
-			check(err)
-		}
-		fmt.Println("Saved books to", jsonFile)
+	if parser.HasArgument("isbns") {
+		isbnsFile := parser.GetArgument("isbns")
+		fmt.Println("Loading ISBNs from", isbnsFile)
+		isbns := LoadISBNs(isbnsFile)
+		fmt.Printf("Found %d ISBN(s) to consider for processing\n", len(isbns))
+		fmt.Println("Only new ISBNs will be processed")
 		fmt.Println()
+
+		// Process the ISBNs
+		books = ProcessISBNs(isbns, books, clearErrors)
+
+		// Save the updated books
+		// Only save if we have more books than we started with
+		if len(books) > len(LoadFile(jsonFile)) {
+			if err := SaveFile(jsonFile, books); err != nil {
+				fmt.Println()
+				fmt.Println("ERROR saving file")
+				check(err)
+			}
+			fmt.Println("Saved books to", jsonFile)
+			fmt.Println()
+		}
 	}
+
 	fmt.Println("Done.")
 	fmt.Println()
 	fmt.Println()

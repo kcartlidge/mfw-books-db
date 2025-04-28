@@ -7,7 +7,7 @@ import (
 )
 
 // ProcessISBNs takes a slice of ISBNs and queries Google Books for each one
-func ProcessISBNs(isbns []string, books []Book) []Book {
+func ProcessISBNs(isbns []string, books []Book, errorsCleared bool) []Book {
 	// Create a grid to track all books
 	grid := NewGrid([]string{"ISBN", "NEW?", "TITLE", "AUTHORS", "ERROR"})
 	grid.SetShowNumbers(true)
@@ -88,7 +88,11 @@ func ProcessISBNs(isbns []string, books []Book) []Book {
 	fmt.Println()
 
 	// Print summary
-	fmt.Printf("Started with %d books in the database.\n", originalCount)
+	if errorsCleared {
+		fmt.Printf("Started with %d books in the database (after clearing any errors).\n", originalCount)
+	} else {
+		fmt.Printf("Started with %d books in the database.\n", originalCount)
+	}
 	fmt.Printf("%d added, %d matched, and %d new errors.\n",
 		newCount, matchedCount, errorCount)
 	fmt.Printf("Ended with %d books in the database.\n", len(books))

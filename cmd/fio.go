@@ -6,6 +6,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -78,7 +79,7 @@ func LoadISBNs(filename string) []string {
 	exists, f, err := CheckFileExists(filename)
 	check(err)
 	if !exists {
-		return []string{}
+		check(fmt.Errorf("file not found: %s", filename))
 	}
 	defer f.Close()
 
@@ -90,10 +91,18 @@ func LoadISBNs(filename string) []string {
 	lines := strings.Split(string(content), "\n")
 
 	// Trim each line and add it to a slice if it's not empty
+	lineNumber := 0
 	var isbns []string
 	for _, line := range lines {
-		line = strings.TrimSpace(line)
+		lineNumber++
+		line = strings.TrimSpace(strings.ReplaceAll(line, " ", ""))
 		if line != "" {
+			if len(line) < 7 || len(line) > 13 {
+				check(fmt.Errorf("invalid-looking ISBN on line %d: %s", lineNumber, line))
+			}
+			if _, err := strconv.Atoi(line); err != nil {
+				check(fmt.Errorf("non-numeric ISBN on line %d: %s", lineNumber, line))
+			}
 			isbns = append(isbns, line)
 		}
 	}
