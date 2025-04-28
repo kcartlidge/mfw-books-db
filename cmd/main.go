@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"strconv"
 )
 
 func main() {
@@ -15,6 +16,7 @@ func main() {
 	parser := NewArgsParser()
 	parser.AddArgument("file", "JSON file containing book data", "", true)
 	parser.AddArgument("isbns", "Text file containing ISBNs to process", "", false)
+	parser.AddArgument("serve", "Local web server port for viewing the database", "", false)
 	parser.AddFlag("clear-errors", "Removes errored ISBNs so they retry")
 	parser.ShowUsage()
 	parser.Parse(os.Args[1:])
@@ -79,6 +81,18 @@ func main() {
 			fmt.Println("Saved books to", jsonFile)
 			fmt.Println()
 		}
+	}
+
+	// Start the server
+	if parser.HasArgument("serve") {
+		port := parser.GetArgument("serve")
+		portInt, err := strconv.Atoi(port)
+		if err != nil {
+			fmt.Println("ERROR converting port to int")
+			check(err)
+		}
+		server := NewServer(portInt)
+		server.Start()
 	}
 
 	fmt.Println("Done.")
