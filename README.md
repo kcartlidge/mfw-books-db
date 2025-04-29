@@ -6,6 +6,11 @@ A Go tool that fetches book information from Google Books and Open Library APIs 
 
 ISBNs can be scanned in via mobile apps like [Alfa ISBN Scanner](https://www.alfaebooks.com/help/isbn_scanner) which lets you gather ISBNs then share them to an email as a text file suitable for input here.
 
+**WARNING**
+Working on a JSON (or any) file stored on some cloud syncing services can screw up the file.
+For example I've seen PCloud append masses of NULLs to the JSON file after an edit.
+To be safe, make changes on a local version and copy or sync it to your backups afterwards.
+
 ## Contents
 
 - [Features](#features)
@@ -29,6 +34,11 @@ ISBNs can be scanned in via mobile apps like [Alfa ISBN Scanner](https://www.alf
 - Free tier: 1,000 requests per day
 - No authentication required for basic queries
 - No per-second rate limit specified
+- **We hit Google Books API twice per book**
+    - The first queries the book details by ISBN
+    - The second queries again by the fetched Google Books ID
+        - This provides better genres, publisher, and page count
+        - There's a `--single-hit` option to disable this
 
 ## Program Rate Limiting
 

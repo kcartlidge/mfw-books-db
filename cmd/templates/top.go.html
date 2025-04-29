@@ -1,0 +1,275 @@
+{{define "top"}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="MFW Books Database">
+  <meta name="generator" content="MFW Books Database">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <title>{{.Title}} - MFW Books Database</title>
+  <style>
+    * {
+      cursor: default;
+    }
+
+    html {
+      box-sizing: border-box;
+      overflow-y: scroll;
+      border-collapse: collapse;
+    }
+
+    html, body {
+      background: #fdfdfd;
+      color: #333;
+    }
+
+    body {
+      font-family: Verdana, Tahoma, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 12pt;
+      line-height: 1.4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      min-height: 100vh;
+    }
+
+    header, nav, main, footer {
+      padding: 0.25rem 2rem;
+    }
+
+    header {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      background-color: #fff;
+    }
+
+    header h1 {
+      margin: 0;
+      padding-bottom: 0.2rem;
+      line-height: 1;
+    }
+
+    a, a:visited, a:link, a:active, a:hover {
+      cursor: pointer;
+      color: #156fc9;
+      text-decoration: none;
+      border-bottom: 1px solid #156fc9;
+    }
+
+    a:hover {
+      color: #08f;
+      border-bottom-color: #08f;
+    }
+
+    nav a, nav a:visited, nav a:link, nav a:active, nav a:hover {
+      display: inline-block;
+      white-space: nowrap;
+      background: #156fc9;
+      color: #fff;
+      text-decoration: none;
+      padding: 0.1rem 0.75rem;
+      border-radius: 0.2rem;
+      margin: 0.25rem 0.1rem;
+    }
+
+    nav a:hover {
+      text-decoration: none;
+      background: #08f;
+    }
+
+    main {
+      max-width: 95%;
+      padding-top: 1rem;
+      padding-bottom: 4rem;
+    }
+
+    footer {
+      padding: 0.2rem 2rem 1rem 2rem;
+      font-size: 0.8rem;
+    }
+
+    h1 {
+      letter-spacing: -1px;
+    }
+
+    h2 {
+      margin: 0;
+      display: inline-block;
+      line-height: 1.2;
+    }
+
+    h2 strong {
+      color: #135d7c;
+    }
+
+    table.books {
+      table-layout: fixed;
+      width: auto;
+      border: 0;
+      background-color: #fdfdfd;
+      border-spacing: 0;
+    }
+
+    table.books thead {
+      background: #ccc;
+    }
+
+    table.books thead tr.header th {
+      background: #fff;
+      padding: 0.5rem 1.5rem 0.25rem 0.5rem;
+      font-weight: normal;
+      font-size: 1.75rem;
+      letter-spacing: -1px;
+      border-bottom: none;
+    }
+
+    table.books tbody tr:nth-child(even) td {
+      background-color: #f3f3f3;
+    }
+
+    table.books tbody tr:hover td {
+      background-color: #e4e4e4;
+      animation: fadeInHover 0.5s;
+    }
+
+    @keyframes fadeInHover {
+      0% { background-color: #f3f3f3; }
+      100% { background-color: #e4e4e4; }
+    }
+
+    table.books th, table.books td {
+      padding: 0.4rem 1.5rem 0.4rem 0.5rem;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    table.books th {
+      font-weight: normal;
+      padding: 0.25rem 1.5rem 0.25rem 0.5rem;
+      border-bottom: 0.5rem solid #fff;
+    }
+
+    table.books td+td {
+      padding-right: 0.25rem;
+    }
+
+    header .filename, table.books td.link a {
+      font-family: 'PT Mono', 'Lucida Console', Consolas, Monaco, monospace;
+      font-size: 0.9rem;
+      line-height: 1.2;
+      opacity: 0.8;
+    }
+
+    table.books td.genre {
+      padding-top: 0.4rem;
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+
+    .exception {
+      color: #da3131;
+    }
+
+    table.books td.link {
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    table.books td.link a {
+      display: inline-block;
+      text-decoration: none;
+      background: #156fc9;
+      color: white;
+      padding: 0.1rem 0.25rem;
+      border: 0;
+      border-radius: 0.2rem;
+      margin: 0 0.1rem 0.2rem 0;
+    }
+
+    table.books td.link a:hover {
+      border: 0;
+      background: #08f;
+    }
+
+    table.books td.link.exception a {
+      background: #da3131;
+    }
+
+    .star {
+      font-size: 1.1rem;
+      letter-spacing: -2px;
+      margin: 0 0 0 -0.2rem;
+      padding: 0;
+      color: #c4c4c4;
+    }
+
+    .star.filled {
+      color: #339b2a;
+    }
+
+    .status-icon {
+      display: inline-block;
+      text-align: center;
+      vertical-align: middle;
+      background: #ddd;
+      color: #000;
+      font-size: 0.9rem;
+      width: 1rem;
+      padding: 0.2rem 0.5rem;
+      border: solid 1px #666;
+      border-radius: 0.25rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .status-icon-U {
+      background: #e1e1e1;
+    }
+
+    .status-icon-C {
+      font-weight: bold;
+      background: #f9ebb9;
+    }
+
+    .status-icon-N {
+      background: #e6d8c3;
+    }
+
+    .status-icon-R {
+      background: #d2dfc5;
+    }
+
+    .status-icon-A {
+      background: #d7acac;
+    }
+
+    .status-icon-X {
+      background: #d7acac;
+    }
+
+    .status-icon-L {
+      background: #a9cce6;
+    }
+
+    .status-icon-G {
+      background: #d7acac;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>MFW Books Database</h1>
+    <div class="filename">{{.Filename}}</div>
+  </header>
+  <nav>
+    <a href="/">All Books</a>
+  </nav>
+  <main>
+{{end}}

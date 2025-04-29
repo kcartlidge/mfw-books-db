@@ -1,16 +1,19 @@
 [
   {
+    "id": "Z6Z4PgAACAAJ",
     "isbn": "9781856265461",
     "title": "50 Great Curries of India",
     "authors": [
       "Camellia Panjabi"
     ],
     "genre": [
+      "Cooking, Regional \u0026 Ethnic",
+      "Cooking, Specific Ingredients",
       "Cookery (Curry)"
     ],
     "link": "https://www.googleapis.com/books/v1/volumes/Z6Z4PgAACAAJ",
     "publishedDate": "2004-09",
-    "publisher": "Kyle Books",
+    "publisher": "Kyle Cathie",
     "pageCount": 224,
     "language": "en",
     "description": "The secret to creating authentic Indian curries at home lies within these fabulous pages. A feast for the senses, this mini format of 50 Great Curries of India is the world's best-selling curry book. It explains how to add taste, aroma and colour to create that perfect curry. Dishes are collected from all over India - from the classic Goa Lamb Vindaloo to the more exotic Gujarat Mango and Yogurt Curry and all are accompanied by tantalising photography to inspire and excite. Other features of the book include the philosophy of Indian food, using spices, herbs and chillies, planning an Indian meal and suggested menus. This revised edition comes with more recipes than ever and full colour photography throughout.",
@@ -23,41 +26,12 @@
     "rating": 0,
     "notes": "",
     "statusIcon": "U",
-    "modifiedUtc": "2025-04-29T07:07:31Z",
+    "modifiedUtc": "2025-04-30T23:17:17Z",
     "isException": false,
-    "exceptionReason": "",
-    "seriesSort": ""
+    "exceptionReason": ""
   },
   {
-    "isbn": "9781841499932",
-    "title": "Abaddon's Gate",
-    "authors": [
-      "James S. A. Corey"
-    ],
-    "genre": [
-      "Fiction"
-    ],
-    "link": "https://www.googleapis.com/books/v1/volumes/eZ8cngEACAAJ",
-    "publishedDate": "2014-03-06",
-    "publisher": "Orbit Books",
-    "pageCount": 539,
-    "language": "en",
-    "description": "NOW A PRIME ORIGINAL SERIES Abaddon's Gate is the third book in the New York Times bestselling Expanse series. For generations, the solar system - Mars, the Moon, the Asteroid Belt - was humanity's great frontier. Until now. The alien artefact working through its program under the clouds of Venus has emerged to build a massive structure outside the orbit of Uranus: a gate that leads into a starless dark. Jim Holden and the crew of the Rocinante are part of a vast flotilla of scientific and military ships going out to examine the artefact. But behind the scenes, a complex plot is unfolding, with the destruction of Holden at its core. As the emissaries of the human race try to find whether the gate is an opportunity or a threat, the greatest danger is the one they brought with them. The Expanse series has sold over two million copies worldwide and is now a major television series. The Expanse series: Leviathan Wakes Caliban's War Abaddon's Gate Cibola Burn Nemesis Games Babylon's Ashes Persepolis Rising Praise for the Expanse: 'The science fictional equivalent of A Song of Ice and Fire' NPR Books 'As close as you'll get to a Hollywood blockbuster in book form' io9.com 'Great characters, excellent dialogue, memorable fights' wired.com 'High adventure equalling the best space opera has to offer, cutting-edge technology and a group of unforgettable characters . . . Perhaps one of the best tales the genre has yet to produce' Library Journal 'This is the future the way it's supposed to be' Wall Street Journal 'Tense and thrilling' SciFiNow",
-    "authorSort": [
-      "Corey, James SA"
-    ],
-    "series": "",
-    "sequence": "",
-    "status": "Unread",
-    "rating": 0,
-    "notes": "",
-    "statusIcon": "U",
-    "modifiedUtc": "2025-04-29T07:07:32Z",
-    "isException": false,
-    "exceptionReason": "",
-    "seriesSort": ""
-  },
-  {
+    "id": "a2V7GwAACAAJ",
     "isbn": "0330280317",
     "title": "Adversary, the",
     "authors": [
@@ -68,7 +42,7 @@
     ],
     "link": "https://www.googleapis.com/books/v1/volumes/a2V7GwAACAAJ",
     "publishedDate": "1984",
-    "publisher": "",
+    "publisher": "Pan Books",
     "pageCount": 470,
     "language": "en",
     "description": "The Frivulag are rising, while the children of the metaphysic rebels are to re-open the time gate - sole escape route back to the Galatic Milieu - and Marc Remillard, the adversary, takes up his destined role in the power play.",
@@ -78,27 +52,35 @@
     "series": "",
     "sequence": "",
     "status": "Unread",
-    "rating": 0,
+    "rating": 3,
     "notes": "",
     "statusIcon": "U",
-    "modifiedUtc": "2025-04-29T07:07:32Z",
+    "modifiedUtc": "2025-04-30T23:17:17Z",
     "isException": false,
-    "exceptionReason": "",
-    "seriesSort": ""
+    "exceptionReason": ""
   },
   {
+    "id": "fkoktq5j_9AC",
     "isbn": "9781421527611",
     "title": "All You Need Is Kill",
     "authors": [
       "桜坂洋"
     ],
     "genre": [
+      "Comics \u0026 Graphic Novels, Media Tie-In",
+      "Comics \u0026 Graphic Novels, Science Fiction",
+      "Comics \u0026 Graphic Novels, Manga",
+      "Fiction, Action \u0026 Adventure",
+      "Fiction, Fantasy",
+      "Fiction, Media Tie-In",
+      "Fiction, Science Fiction",
+      "COMICS \u0026 GRAPHIC NOVELS, Manga",
       "Comics \u0026 Graphic Novels"
     ],
     "link": "https://www.googleapis.com/books/v1/volumes/fkoktq5j_9AC",
     "publishedDate": "2009-07-21",
-    "publisher": "All You Need Is Kill",
-    "pageCount": 212,
+    "publisher": "Haikasoru",
+    "pageCount": 230,
     "language": "en",
     "description": "SCIENCE FICTION. When the alien Gitai invade, Keiji Kiriya is just one of many raw recruits shoved into a suit of battle armour and sent out to kill. Keiji dies on the battlefield, only to find himself reborn each morning to fight and die again and again. On the 158th iteration though, he sees something different, something out of place: the female soldier known as the Bitch of War. Is the Bitch the key to Keiji's escape, or to his final death?",
     "authorSort": [
@@ -107,27 +89,29 @@
     "series": "",
     "sequence": "",
     "status": "Unread",
-    "rating": 0,
+    "rating": 5,
     "notes": "",
     "statusIcon": "U",
-    "modifiedUtc": "2025-04-29T07:07:33Z",
+    "modifiedUtc": "2025-04-30T23:17:19Z",
     "isException": false,
-    "exceptionReason": "",
-    "seriesSort": ""
+    "exceptionReason": ""
   },
   {
+    "id": "sdxwzwEACAAJ",
     "isbn": "9781399603720",
     "title": "Beyond the Burn Line",
     "authors": [
       "Paul McAuley"
     ],
     "genre": [
+      "Fiction, General",
+      "Fiction, Science Fiction",
       "Bears"
     ],
     "link": "https://www.googleapis.com/books/v1/volumes/sdxwzwEACAAJ",
     "publishedDate": "2023-09-28",
-    "publisher": "Gollancz",
-    "pageCount": 0,
+    "publisher": "Orion Publishing Group, Limited",
+    "pageCount": 464,
     "language": "en",
     "description": "\"After the death of his master, a famous scholar, Pilgrim Saltmire vows to complete their research into sightings of so-called visitors and their sky craft. Risking his reputation and his life, Pilgrim's search for the truth takes him from his comfortable home in the shadow of a great library to his tribe's former home on the chilly coast of the far south, and the gathering of a dangerous cult in the high desert. Whether or not the visitors are real, one thing is certain. Pilgrim's world and everything he thought he knew about his people's history will be utterly changed\"--",
     "authorSort": [
@@ -139,275 +123,12 @@
     "rating": 0,
     "notes": "",
     "statusIcon": "U",
-    "modifiedUtc": "2025-04-29T07:07:34Z",
+    "modifiedUtc": "2025-04-30T23:17:20Z",
     "isException": false,
-    "exceptionReason": "",
-    "seriesSort": ""
+    "exceptionReason": ""
   },
   {
-    "isbn": "9780356501048",
-    "title": "Coalition's End",
-    "authors": [
-      "Karen Traviss"
-    ],
-    "genre": [
-      "Imaginary wars and battles"
-    ],
-    "link": "https://www.googleapis.com/books/v1/volumes/OHOnuQAACAAJ",
-    "publishedDate": "2011",
-    "publisher": "Orbit Books",
-    "pageCount": 0,
-    "language": "en",
-    "description": "An official novel set in the world of the blockbuster video game 'Gears of War', one of the fastest selling Xbox 360 games of all time.",
-    "authorSort": [
-      "Traviss, Karen"
-    ],
-    "series": "",
-    "sequence": "",
-    "status": "Unread",
-    "rating": 0,
-    "notes": "",
-    "statusIcon": "U",
-    "modifiedUtc": "2025-04-29T07:07:35Z",
-    "isException": false,
-    "exceptionReason": "",
-    "seriesSort": ""
-  },
-  {
-    "isbn": "9780008204181",
-    "title": "Court of Broken Knives, the",
-    "authors": [
-      "Anna Smith Spark"
-    ],
-    "genre": [
-      "Courts and courtiers"
-    ],
-    "link": "https://www.googleapis.com/books/v1/volumes/LtHvAQAACAAJ",
-    "publishedDate": "2018-02-08",
-    "publisher": "Voyager",
-    "pageCount": 480,
-    "language": "en",
-    "description": "Perfect for fans of Mark Lawrence and R Scott Bakker, The Court of Broken Knives is the explosive debut by one of grimdark fantasy's most exciting new voices.",
-    "authorSort": [
-      "Spark, Anna Smith"
-    ],
-    "series": "",
-    "sequence": "",
-    "status": "Unread",
-    "rating": 0,
-    "notes": "",
-    "statusIcon": "U",
-    "modifiedUtc": "2025-04-29T07:07:36Z",
-    "isException": false,
-    "exceptionReason": "",
-    "seriesSort": ""
-  },
-  {
-    "isbn": "9780241956304",
-    "title": "Trouble is My Business",
-    "authors": [
-      "Raymond Chandler",
-      "Karin Slaughter"
-    ],
-    "genre": [
-      "Fiction"
-    ],
-    "link": "https://www.googleapis.com/books/v1/volumes/8G34nAEACAAJ",
-    "publishedDate": "2013",
-    "publisher": "Penguin Group",
-    "pageCount": 0,
-    "language": "en",
-    "description": "In 'Trouble is My Business', Philip Marlowe's forerunner, private eye John Dalmas, gets to stand between a gambler and a rich man. The play-off is drinking good Scotch with Harriet Huntress - the woman giving each of them grief.",
-    "authorSort": [
-      "Chandler, Raymond",
-      "Slaughter, Karin"
-    ],
-    "series": "",
-    "sequence": "",
-    "status": "Unread",
-    "rating": 0,
-    "notes": "",
-    "statusIcon": "U",
-    "modifiedUtc": "2025-04-29T07:07:36Z",
-    "isException": false,
-    "exceptionReason": "",
-    "seriesSort": ""
-  },
-  {
-    "isbn": "9780356500270",
-    "title": "Storm Front",
-    "authors": [
-      "Jim Butcher"
-    ],
-    "genre": [
-      "Dresden, Harry (Fictitious character)"
-    ],
-    "link": "https://www.googleapis.com/books/v1/volumes/LL-9cQAACAAJ",
-    "publishedDate": "2011",
-    "publisher": "Orbit Books",
-    "pageCount": 0,
-    "language": "en",
-    "description": "Meet Harry Dresden, Chicago's first (and only) Wizard P.I. Turns out the 'everyday' world is full of strange and magical things - and most of them don't play well with humans. That's where Harry comes in.Harry is the best at what he does - and not just because he's the only one who does it. So when the Chicago P.D. has a case that transcends mortal capabilities, they look to him for answers. There's just one problem. Business, to put it mildly, stinks. So when the police bring him in to consult on a grisly double murder committed with black magic, Harry's seeing dollar signs. But where there's black magic, there's a black mage behind it. And now that mage knows Harry's name. And that's when things start to get . . . interesting. Magic - it can get a guy killed.",
-    "authorSort": [
-      "Butcher, Jim"
-    ],
-    "series": "",
-    "sequence": "",
-    "status": "Unread",
-    "rating": 0,
-    "notes": "",
-    "statusIcon": "U",
-    "modifiedUtc": "2025-04-29T07:07:37Z",
-    "isException": false,
-    "exceptionReason": "",
-    "seriesSort": ""
-  },
-  {
-    "isbn": "9780356500300",
-    "title": "Summer Knight",
-    "authors": [
-      "Jim Butcher"
-    ],
-    "genre": [
-      "Chicago (Ill.)"
-    ],
-    "link": "https://www.googleapis.com/books/v1/volumes/I1aacQAACAAJ",
-    "publishedDate": "2011",
-    "publisher": "Orbit Books",
-    "pageCount": 0,
-    "language": "en",
-    "description": "Professional wizard Harry Dresden is approached by the Winter Queen of Faerieto find out who murdered the Summer Queen's right-hand man. Soon, Harry findsout that the fate of the entire world rests on his solving this case.",
-    "authorSort": [
-      "Butcher, Jim"
-    ],
-    "series": "",
-    "sequence": "",
-    "status": "Unread",
-    "rating": 0,
-    "notes": "",
-    "statusIcon": "U",
-    "modifiedUtc": "2025-04-29T07:07:38Z",
-    "isException": false,
-    "exceptionReason": "",
-    "seriesSort": ""
-  },
-  {
-    "isbn": "0722129548",
-    "title": "Tactics of Mistake",
-    "authors": [
-      "Gordon R. Dickson"
-    ],
-    "genre": [
-      "English fiction"
-    ],
-    "link": "https://www.googleapis.com/books/v1/volumes/5YiXJAAACAAJ",
-    "publishedDate": "1976",
-    "publisher": "",
-    "pageCount": 237,
-    "language": "en",
-    "description": "",
-    "authorSort": [
-      "Dickson, Gordon R"
-    ],
-    "series": "",
-    "sequence": "",
-    "status": "Unread",
-    "rating": 0,
-    "notes": "",
-    "statusIcon": "U",
-    "modifiedUtc": "2025-04-29T07:07:39Z",
-    "isException": false,
-    "exceptionReason": "",
-    "seriesSort": ""
-  },
-  {
-    "isbn": "9781529376432",
-    "title": "Talent",
-    "authors": [
-      "Tyler Cowan",
-      "Daniel Gross"
-    ],
-    "genre": null,
-    "link": "https://www.googleapis.com/books/v1/volumes/2mGKzgEACAAJ",
-    "publishedDate": "2022-05-12",
-    "publisher": "",
-    "pageCount": 288,
-    "language": "en",
-    "description": "How do you find talent with a creative spark? To what extent can you predict human creativity, or is human creativity something irreducible before our eyes, perhaps to be spotted or glimpsed by intuition, but unique each time it appears? The art and science of talent search get at exactly those questions. Renowned economist Tyler Cowen and venture capitalist and entrepreneur Daniel Gross guide the reader through the major scientific research areas relevant for talent search, including how to conduct an interview, how much to weight intelligence, how to judge personality and match personality traits to jobs, how to evaluate talent in on-line interactions such as Zoom calls, why talented women are still undervalued and how to spot them, how to understand the special talents in people who have disabilities or supposed disabilities, and how to use delegated scouts to find talent. Identifying underrated, brilliant individuals is one of the simplest ways to give yourself an organizational edge, and this is the book that will show you how to do that. It is both for people searching for talent, and for those being searched and wish to understand how to better stand out.",
-    "authorSort": [
-      "Cowan, Tyler",
-      "Gross, Daniel"
-    ],
-    "series": "",
-    "sequence": "",
-    "status": "Unread",
-    "rating": 0,
-    "notes": "",
-    "statusIcon": "U",
-    "modifiedUtc": "2025-04-29T07:07:40Z",
-    "isException": false,
-    "exceptionReason": "",
-    "seriesSort": ""
-  },
-  {
-    "isbn": "9780552145800",
-    "title": "Dance of the Voodoo Handbag, the",
-    "authors": [
-      "Robert Rankin"
-    ],
-    "genre": [
-      "Fiction"
-    ],
-    "link": "https://www.googleapis.com/books/v1/volumes/ld-7f2YXxHwC",
-    "publishedDate": "1999",
-    "publisher": "Random House",
-    "pageCount": 340,
-    "language": "en",
-    "description": "Originally published: London: Doubleday, 1998.",
-    "authorSort": [
-      "Rankin, Robert"
-    ],
-    "series": "",
-    "sequence": "",
-    "status": "Unread",
-    "rating": 0,
-    "notes": "",
-    "statusIcon": "U",
-    "modifiedUtc": "2025-04-29T07:07:40Z",
-    "isException": false,
-    "exceptionReason": "",
-    "seriesSort": ""
-  },
-  {
-    "isbn": "9780552148979",
-    "title": "Fandom of the Operator, the",
-    "authors": [
-      "Robert Rankin"
-    ],
-    "genre": [
-      "Humorous stories"
-    ],
-    "link": "https://www.googleapis.com/books/v1/volumes/LI0OAAAACAAJ",
-    "publishedDate": "2002",
-    "publisher": "Flamingo",
-    "pageCount": 0,
-    "language": "en",
-    "description": "Gary Cheese is 19 and works for British Telecom as an operator. His hobbies include watching TV, walking his dog, going down to the pub, and attempting to re-animate the dead.",
-    "authorSort": [
-      "Rankin, Robert"
-    ],
-    "series": "",
-    "sequence": "",
-    "status": "Unread",
-    "rating": 0,
-    "notes": "",
-    "statusIcon": "U",
-    "modifiedUtc": "2025-04-29T07:08:29Z",
-    "isException": false,
-    "exceptionReason": "",
-    "seriesSort": ""
-  },
-  {
+    "id": "",
     "isbn": "9780007129706",
     "title": "",
     "authors": null,
@@ -425,12 +146,143 @@
     "rating": 0,
     "notes": "",
     "statusIcon": "",
-    "modifiedUtc": "2025-04-29T08:10:00Z",
+    "modifiedUtc": "2025-04-30T23:17:20Z",
     "isException": true,
-    "exceptionReason": "no book found",
-    "seriesSort": ""
+    "exceptionReason": "no book found"
   },
   {
+    "id": "OHOnuQAACAAJ",
+    "isbn": "9780356501048",
+    "title": "Coalition's End",
+    "authors": [
+      "Karen Traviss"
+    ],
+    "genre": [
+      "Fiction, Science Fiction",
+      "Imaginary wars and battles"
+    ],
+    "link": "https://www.googleapis.com/books/v1/volumes/OHOnuQAACAAJ",
+    "publishedDate": "2011",
+    "publisher": "Orbit",
+    "pageCount": 607,
+    "language": "en",
+    "description": "An official novel set in the world of the blockbuster video game 'Gears of War', one of the fastest selling Xbox 360 games of all time.",
+    "authorSort": [
+      "Traviss, Karen"
+    ],
+    "series": "",
+    "sequence": "",
+    "status": "Unread",
+    "rating": 0,
+    "notes": "",
+    "statusIcon": "U",
+    "modifiedUtc": "2025-04-30T23:17:21Z",
+    "isException": false,
+    "exceptionReason": ""
+  },
+  {
+    "id": "LtHvAQAACAAJ",
+    "isbn": "9780008204181",
+    "title": "Court of Broken Knives, the",
+    "authors": [
+      "Anna Smith Spark"
+    ],
+    "genre": [
+      "Fiction, Fantasy",
+      "Fiction, Religious",
+      "Fiction, Thrillers",
+      "Courts and courtiers"
+    ],
+    "link": "https://www.googleapis.com/books/v1/volumes/LtHvAQAACAAJ",
+    "publishedDate": "2018-02-08",
+    "publisher": "HarperCollins Publishers Limited",
+    "pageCount": 480,
+    "language": "en",
+    "description": "Perfect for fans of Mark Lawrence and R Scott Bakker, The Court of Broken Knives is the explosive debut by one of grimdark fantasy's most exciting new voices.",
+    "authorSort": [
+      "Spark, Anna Smith"
+    ],
+    "series": "",
+    "sequence": "",
+    "status": "Unread",
+    "rating": 0,
+    "notes": "",
+    "statusIcon": "U",
+    "modifiedUtc": "2025-04-30T23:17:22Z",
+    "isException": false,
+    "exceptionReason": ""
+  },
+  {
+    "id": "8G34nAEACAAJ",
+    "isbn": "9780241956304",
+    "title": "Trouble is My Business",
+    "authors": [
+      "Raymond Chandler",
+      "Karin Slaughter"
+    ],
+    "genre": [
+      "Fiction, Mystery \u0026 Detective",
+      "Fiction, Short Stories (single author)",
+      "Fiction, Thrillers",
+      "Fiction, Crime",
+      "Fiction, City Life",
+      "Fiction"
+    ],
+    "link": "https://www.googleapis.com/books/v1/volumes/8G34nAEACAAJ",
+    "publishedDate": "2013",
+    "publisher": "Penguin Books",
+    "pageCount": 288,
+    "language": "en",
+    "description": "In 'Trouble is My Business', Philip Marlowe's forerunner, private eye John Dalmas, gets to stand between a gambler and a rich man. The play-off is drinking good Scotch with Harriet Huntress - the woman giving each of them grief.",
+    "authorSort": [
+      "Chandler, Raymond",
+      "Slaughter, Karin"
+    ],
+    "series": "",
+    "sequence": "",
+    "status": "Unread",
+    "rating": 0,
+    "notes": "",
+    "statusIcon": "U",
+    "modifiedUtc": "2025-04-30T23:17:23Z",
+    "isException": false,
+    "exceptionReason": ""
+  },
+  {
+    "id": "LL-9cQAACAAJ",
+    "isbn": "9780356500270",
+    "title": "Storm Front",
+    "authors": [
+      "Jim Butcher"
+    ],
+    "genre": [
+      "Fiction, Fantasy",
+      "Fiction, Mystery \u0026 Detective",
+      "Fiction, Occult \u0026 Supernatural",
+      "Fiction, City Life",
+      "Dresden, Harry (Fictitious character)"
+    ],
+    "link": "https://www.googleapis.com/books/v1/volumes/LL-9cQAACAAJ",
+    "publishedDate": "2011",
+    "publisher": "Orbit",
+    "pageCount": 307,
+    "language": "en",
+    "description": "Meet Harry Dresden, Chicago's first (and only) Wizard P.I. Turns out the 'everyday' world is full of strange and magical things - and most of them don't play well with humans. That's where Harry comes in.Harry is the best at what he does - and not just because he's the only one who does it. So when the Chicago P.D. has a case that transcends mortal capabilities, they look to him for answers. There's just one problem. Business, to put it mildly, stinks. So when the police bring him in to consult on a grisly double murder committed with black magic, Harry's seeing dollar signs. But where there's black magic, there's a black mage behind it. And now that mage knows Harry's name. And that's when things start to get . . . interesting. Magic - it can get a guy killed.",
+    "authorSort": [
+      "Butcher, Jim"
+    ],
+    "series": "Dresden Files",
+    "sequence": "1",
+    "status": "Unread",
+    "rating": 4,
+    "notes": "",
+    "statusIcon": "U",
+    "modifiedUtc": "2025-04-30T23:17:24Z",
+    "isException": false,
+    "exceptionReason": ""
+  },
+  {
+    "id": "",
     "isbn": "9780006754022",
     "title": "",
     "authors": null,
@@ -448,9 +300,167 @@
     "rating": 0,
     "notes": "",
     "statusIcon": "",
-    "modifiedUtc": "2025-04-29T08:10:00Z",
+    "modifiedUtc": "2025-04-30T23:17:24Z",
     "isException": true,
-    "exceptionReason": "no book found",
-    "seriesSort": ""
+    "exceptionReason": "no book found"
+  },
+  {
+    "id": "I1aacQAACAAJ",
+    "isbn": "9780356500300",
+    "title": "Summer Knight",
+    "authors": [
+      "Jim Butcher"
+    ],
+    "genre": [
+      "Fiction, Fantasy",
+      "Fiction, Mystery \u0026 Detective",
+      "Fiction, Occult \u0026 Supernatural",
+      "Fiction, City Life",
+      "Chicago (Ill.)"
+    ],
+    "link": "https://www.googleapis.com/books/v1/volumes/I1aacQAACAAJ",
+    "publishedDate": "2011",
+    "publisher": "Orbit",
+    "pageCount": 413,
+    "language": "en",
+    "description": "Professional wizard Harry Dresden is approached by the Winter Queen of Faerieto find out who murdered the Summer Queen's right-hand man. Soon, Harry findsout that the fate of the entire world rests on his solving this case.",
+    "authorSort": [
+      "Butcher, Jim"
+    ],
+    "series": "",
+    "sequence": "",
+    "status": "Unread",
+    "rating": 0,
+    "notes": "",
+    "statusIcon": "U",
+    "modifiedUtc": "2025-05-01T18:16:16Z",
+    "isException": false,
+    "exceptionReason": ""
+  },
+  {
+    "id": "5YiXJAAACAAJ",
+    "isbn": "0722129548",
+    "title": "Tactics of Mistake",
+    "authors": [
+      "Gordon R. Dickson"
+    ],
+    "genre": [
+      "Fiction, Science Fiction",
+      "English fiction"
+    ],
+    "link": "https://www.googleapis.com/books/v1/volumes/5YiXJAAACAAJ",
+    "publishedDate": "1976",
+    "publisher": "Sphere Books",
+    "pageCount": 237,
+    "language": "en",
+    "description": "",
+    "authorSort": [
+      "Dickson, Gordon R"
+    ],
+    "series": "",
+    "sequence": "",
+    "status": "Unread",
+    "rating": 0,
+    "notes": "",
+    "statusIcon": "U",
+    "modifiedUtc": "2025-05-01T18:16:17Z",
+    "isException": false,
+    "exceptionReason": ""
+  },
+  {
+    "id": "2mGKzgEACAAJ",
+    "isbn": "9781529376432",
+    "title": "Talent",
+    "authors": [
+      "Tyler Cowan",
+      "Daniel Gross"
+    ],
+    "genre": [
+      "Business \u0026 Economics, General",
+      "Business \u0026 Economics, Leadership",
+      "Business \u0026 Economics, Commerce"
+    ],
+    "link": "https://www.googleapis.com/books/v1/volumes/2mGKzgEACAAJ",
+    "publishedDate": "2022-05-12",
+    "publisher": "Nicholas Brealey Publishing",
+    "pageCount": 278,
+    "language": "en",
+    "description": "How do you find talent with a creative spark? To what extent can you predict human creativity, or is human creativity something irreducible before our eyes, perhaps to be spotted or glimpsed by intuition, but unique each time it appears? The art and science of talent search get at exactly those questions. Renowned economist Tyler Cowen and venture capitalist and entrepreneur Daniel Gross guide the reader through the major scientific research areas relevant for talent search, including how to conduct an interview, how much to weight intelligence, how to judge personality and match personality traits to jobs, how to evaluate talent in on-line interactions such as Zoom calls, why talented women are still undervalued and how to spot them, how to understand the special talents in people who have disabilities or supposed disabilities, and how to use delegated scouts to find talent. Identifying underrated, brilliant individuals is one of the simplest ways to give yourself an organizational edge, and this is the book that will show you how to do that. It is both for people searching for talent, and for those being searched and wish to understand how to better stand out.",
+    "authorSort": [
+      "Cowan, Tyler",
+      "Gross, Daniel"
+    ],
+    "series": "",
+    "sequence": "",
+    "status": "Unread",
+    "rating": 0,
+    "notes": "",
+    "statusIcon": "U",
+    "modifiedUtc": "2025-05-01T18:16:17Z",
+    "isException": false,
+    "exceptionReason": ""
+  },
+  {
+    "id": "ld-7f2YXxHwC",
+    "isbn": "9780552145800",
+    "title": "Dance of the Voodoo Handbag, the",
+    "authors": [
+      "Robert Rankin"
+    ],
+    "genre": [
+      "Fiction, Fantasy",
+      "Fiction, Science Fiction",
+      "Humor, General",
+      "Fiction"
+    ],
+    "link": "https://www.googleapis.com/books/v1/volumes/ld-7f2YXxHwC",
+    "publishedDate": "1999",
+    "publisher": "Random House",
+    "pageCount": 335,
+    "language": "en",
+    "description": "Originally published: London: Doubleday, 1998.",
+    "authorSort": [
+      "Rankin, Robert"
+    ],
+    "series": "",
+    "sequence": "",
+    "status": "Unread",
+    "rating": 0,
+    "notes": "",
+    "statusIcon": "U",
+    "modifiedUtc": "2025-05-01T18:16:18Z",
+    "isException": false,
+    "exceptionReason": ""
+  },
+  {
+    "id": "LI0OAAAACAAJ",
+    "isbn": "9780552148979",
+    "title": "Fandom of the Operator, the",
+    "authors": [
+      "Robert Rankin"
+    ],
+    "genre": [
+      "Fiction, General",
+      "Fiction, Fantasy",
+      "Humorous stories"
+    ],
+    "link": "https://www.googleapis.com/books/v1/volumes/LI0OAAAACAAJ",
+    "publishedDate": "2002",
+    "publisher": "Corgi",
+    "pageCount": 366,
+    "language": "en",
+    "description": "Gary Cheese is 19 and works for British Telecom as an operator. His hobbies include watching TV, walking his dog, going down to the pub, and attempting to re-animate the dead.",
+    "authorSort": [
+      "Rankin, Robert"
+    ],
+    "series": "",
+    "sequence": "",
+    "status": "Unread",
+    "rating": 0,
+    "notes": "",
+    "statusIcon": "U",
+    "modifiedUtc": "2025-05-01T18:16:19Z",
+    "isException": false,
+    "exceptionReason": ""
   }
 ]

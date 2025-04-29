@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"os"
 	"path/filepath"
-	"strconv"
 	"strings"
 	"time"
 )
@@ -24,6 +24,7 @@ func LoadFile(filename string) []Book {
 	var books []Book
 	decoder := json.NewDecoder(f)
 	if err := decoder.Decode(&books); err != nil {
+		log.Fatalf("error decoding JSON: %v", err)
 		return []Book{}
 	}
 	return books
@@ -64,14 +65,15 @@ func SaveFile(filename string, books []Book) error {
 	}
 
 	// Save new file
-	mainFile, err := os.Create(filename)
+	json, err := json.MarshalIndent(books, "", "  ")
 	if err != nil {
-		return err
+		check(err)
 	}
-	defer mainFile.Close()
-	encoder := json.NewEncoder(mainFile)
-	encoder.SetIndent("", "  ")
-	return encoder.Encode(books)
+	err = os.WriteFile(filename, json, 0644)
+	if err != nil {
+		check(err)
+	}
+	return nil
 }
 
 // LoadISBNs reads ISBNs from a text file, one per line
@@ -100,9 +102,13 @@ func LoadISBNs(filename string) []string {
 			if len(line) < 7 || len(line) > 13 {
 				check(fmt.Errorf("invalid-looking ISBN on line %d: %s", lineNumber, line))
 			}
-			if _, err := strconv.Atoi(line); err != nil {
-				check(fmt.Errorf("non-numeric ISBN on line %d: %s", lineNumber, line))
-			}
+
+			// Commented this out pending further thought as some ISBNs are not numeric
+			// in that they include X etc (eg '033026656X')
+			// if _, err := strconv.Atoi(line); err != nil {
+			// 	check(fmt.Errorf("non-numeric ISBN on line %d: %s", lineNumber, line))
+			// }
+
 			isbns = append(isbns, line)
 		}
 	}
@@ -135,4 +141,16 @@ func ClearErroredBooks(filename string) (int, error) {
 	}
 
 	return 0, nil
+}
+
+// CheckFileExists checks if a file exists (and returns a handle to it)
+func CheckFileExists(filename string) (bool, *os.File, error) {
+	f, err := os.Open(filename)
+	if err != nil {
+		if os.IsNotExist(err) {
+			return false, nil, nil
+		}
+		return false, nil, err
+	}
+	return true, f, nil
 }

@@ -1,12 +1,14 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
+	"html/template"
+	"strings"
 )
 
 // Book represents a book in the database
 type Book struct {
+	ID              string   `json:"id"`
 	ISBN            string   `json:"isbn"`
 	Title           string   `json:"title"`
 	Authors         []string `json:"authors"`
@@ -29,6 +31,25 @@ type Book struct {
 	ExceptionReason string   `json:"exceptionReason"`
 }
 
+// GetSeriesSort returns the computed series sort value
+func (b *Book) GetSeriesSort() string {
+	if b.Series == "" {
+		return ""
+	}
+	if b.Sequence == "" {
+		return b.Series
+	}
+	return fmt.Sprintf("%s [%s]", b.Series, b.Sequence)
+}
+
+// GetStatusLetter returns the status letter for the book
+func (b *Book) GetStatusLetter() string {
+	if b.Status == "" {
+		return "-"
+	}
+	return strings.ToUpper(string(b.Status[0]))
+}
+
 // GetAuthorDisplay returns a formatted string for displaying authors
 func (b *Book) GetAuthorDisplay() string {
 	return b.getDisplayString(b.Authors)
@@ -39,21 +60,19 @@ func (b *Book) GetAuthorSortDisplay() string {
 	return b.getDisplayString(b.AuthorSort)
 }
 
+// GetAuthorSortHtmlDisplay returns a formatted string for displaying author sorts
+func (b *Book) GetAuthorSortHtmlDisplay() template.HTML {
+	return template.HTML(b.getHtmlLines(b.AuthorSort))
+}
+
 // GetGenreDisplay returns a formatted string for displaying genres
 func (b *Book) GetGenreDisplay() string {
 	return b.getDisplayString(b.Genre)
 }
 
-// MarshalJSON implements json.Marshaler for Book
-func (b *Book) MarshalJSON() ([]byte, error) {
-	type Alias Book
-	return json.Marshal(&struct {
-		*Alias
-		SeriesSort string `json:"seriesSort"`
-	}{
-		Alias:      (*Alias)(b),
-		SeriesSort: b.ComputeSeriesSort(),
-	})
+// GetGenreHtmlDisplay returns a formatted string for displaying genres
+func (b *Book) GetGenreHtmlDisplay() template.HTML {
+	return template.HTML(b.getHtmlLines(b.Genre))
 }
 
 // Print displays the book's information
@@ -69,32 +88,21 @@ func (b *Book) Print() {
 	grid.AddRow("Publisher:", b.Publisher)
 	grid.AddRow("Pages:", fmt.Sprintf("%d", b.PageCount))
 	grid.AddRow("Language:", b.Language)
-	grid.AddRow("Description:", b.Description)
 	grid.AddRow("Author Sort:", joinWithAmpersand(b.AuthorSort))
 	grid.AddRow("Series:", b.Series)
 	grid.AddRow("Sequence:", b.Sequence)
 	grid.AddRow("Link:", b.Link)
 	grid.AddRow("Status:", b.Status)
-	grid.AddRow("Rating:", fmt.Sprintf("%d", b.Rating))
-	grid.AddRow("Notes:", b.Notes)
 	grid.AddRow("Status Icon:", b.StatusIcon)
-	grid.AddRow("Series Sort:", b.ComputeSeriesSort())
-	grid.AddRow("Modified:", b.ModifiedUtc)
+	grid.AddRow("Rating:", fmt.Sprintf("%d", b.Rating))
+	grid.AddRow("Series Sort:", b.GetSeriesSort())
+	grid.AddRow("Description:", b.Description)
+	grid.AddRow("Notes:", b.Notes)
 	grid.AddRow("Exception:", fmt.Sprintf("%v", b.IsException))
 	grid.AddRow("Exception Reason:", b.ExceptionReason)
+	grid.AddRow("Modified:", b.ModifiedUtc)
 
 	fmt.Println(grid)
-}
-
-// ComputeSeriesSort returns the computed series sort value
-func (b *Book) ComputeSeriesSort() string {
-	if b.Series == "" {
-		return ""
-	}
-	if b.Sequence == "" {
-		return b.Series
-	}
-	return fmt.Sprintf("%s [%s]", b.Series, b.Sequence)
 }
 
 // getDisplayString returns a formatted string for displaying array items
@@ -106,4 +114,45 @@ func (b *Book) getDisplayString(items []string) string {
 		return items[0]
 	}
 	return fmt.Sprintf("%s [+%d]", items[0], len(items)-1)
+}
+
+// getHtmlLines returns HTML for the array items as a list of lines
+func (b *Book) getHtmlLines(items []string) string {
+	if len(items) == 0 {
+		return ""
+	}
+	if len(items) == 1 {
+		return items[0]
+	}
+	return strings.Join(items, "<br/>")
+}
+
+// GetLinkGoodreads returns the link for the book on Goodreads
+func (b *Book) GetLinkGoodreads() string {
+	return fmt.Sprintf("https://www.goodreads.com/search?q=%s", b.ISBN)
+}
+
+// GetLinkGoogleBooksJson returns the link for fetching the book details as a JSON string
+func (b *Book) GetLinkGoogleBooksJson() string {
+	return b.Link
+}
+
+// GetLinkGoogleBooksView returns the link for the book as a HTML page on Google Books
+func (b *Book) GetLinkGoogleBooksView() string {
+	return fmt.Sprintf("https://books.google.com/books?id=%s&dq=isbn:%s", b.ID, b.ISBN)
+}
+
+// GetLinkOpenLibrary returns the link for the book on OpenLibrary
+func (b *Book) GetLinkOpenLibrary() string {
+	return fmt.Sprintf("https://openlibrary.org/isbn/%s", b.ISBN)
+}
+
+// GetLinkLibraryThing returns the link for the book on LibraryThing
+func (b *Book) GetLinkLibraryThing() string {
+	return fmt.Sprintf("https://www.librarything.com/search.php?search=%s", b.ISBN)
+}
+
+// GetLinkWaterstones returns the link for the book on Waterstones
+func (b *Book) GetLinkWaterstones() string {
+	return fmt.Sprintf("https://www.waterstones.com/index/search?term=%s", b.ISBN)
 }

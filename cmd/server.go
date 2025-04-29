@@ -15,25 +15,34 @@ import (
 
 // Server is a simple web server that serves the database
 type Server struct {
-	Port   int
-	Router *mux.Router
+	Port     int
+	Router   *mux.Router
+	Filename string
 }
 
 // NewServer creates a new server
-func NewServer(port int) *Server {
+func NewServer(port int, filename string) (*Server, error) {
+	// Initialize templates
+	_, err := NewTemplates()
+	if err != nil {
+		return nil, fmt.Errorf("error initializing templates: %w", err)
+	}
+
 	s := &Server{
-		Port:   port,
-		Router: mux.NewRouter(),
+		Port:     port,
+		Router:   mux.NewRouter(),
+		Filename: filename,
 	}
 
 	// Add handlers
-	s.Router.HandleFunc("/", HomeHandler).Methods("GET")
+	s.Router.HandleFunc("/", s.HomeHandler).Methods("GET")
 
-	// Add static file handling and custom 404 handler
-	s.Router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
-	s.Router.NotFoundHandler = http.HandlerFunc(NotFoundHandler)
+	// Add root-level static file handler (must come after specific routes)
+	s.Router.PathPrefix("/").Handler(http.FileServer(http.Dir("static")))
 
-	return s
+	s.Router.NotFoundHandler = http.HandlerFunc(s.NotFoundHandler)
+
+	return s, nil
 }
 
 // Start starts the server

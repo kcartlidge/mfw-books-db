@@ -7,7 +7,7 @@ import (
 )
 
 // ProcessISBNs takes a slice of ISBNs and queries Google Books for each one
-func ProcessISBNs(isbns []string, books []Book, errorsCleared bool) []Book {
+func ProcessISBNs(isbns []string, books []Book, errorsCleared bool, singleHit bool) []Book {
 	// Create a grid to track all books
 	grid := NewGrid([]string{"ISBN", "NEW?", "TITLE", "AUTHORS", "ERROR"})
 	grid.SetShowNumbers(true)
@@ -42,10 +42,11 @@ func ProcessISBNs(isbns []string, books []Book, errorsCleared bool) []Book {
 		}
 
 		// Get the book from Google Books
-		gb, err := GetBookByISBN(isbn)
+		gb, err := GetBookByISBN(isbn, singleHit)
 		if err != nil {
 			// Create a book with just the ISBN and error information
 			book := Book{
+				ID:              "",
 				ISBN:            isbn,
 				IsException:     true,
 				ExceptionReason: err.Error(),
@@ -104,6 +105,7 @@ func ProcessISBNs(isbns []string, books []Book, errorsCleared bool) []Book {
 // mapGoogleBook converts a GoogleBook to our Book model
 func mapGoogleBook(isbn string, gb *GoogleBook) Book {
 	return Book{
+		ID:            gb.ID,
 		ISBN:          isbn,
 		Title:         fixTitle(gb.Title),
 		Authors:       gb.Authors,

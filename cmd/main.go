@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"path/filepath"
 	"strconv"
 )
 
@@ -18,6 +19,7 @@ func main() {
 	parser.AddArgument("isbns", "Text file containing ISBNs to process", "", false)
 	parser.AddArgument("serve", "Local web server port for viewing the database", "", false)
 	parser.AddFlag("clear-errors", "Removes errored ISBNs so they retry")
+	parser.AddFlag("single-hit", "Only call the API once per ISBN (result quality varies)")
 	parser.ShowUsage()
 	parser.Parse(os.Args[1:])
 
@@ -31,6 +33,7 @@ func main() {
 	parser.ShowProvided()
 	jsonFile := parser.GetArgument("file")
 	clearErrors := parser.GetFlag("clear-errors")
+	singleHit := parser.GetFlag("single-hit")
 
 	// Load the books from the JSON file
 	fmt.Println()
@@ -66,9 +69,16 @@ func main() {
 		fmt.Printf("Found %d ISBN(s) to consider for processing\n", len(isbns))
 		fmt.Println("Only new ISBNs will be processed")
 		fmt.Println()
+		if singleHit {
+			fmt.Println("Single hit mode is enabled (only call the API once per ISBN)")
+			fmt.Println("The initial call is by ISBN and gets book data including an ID")
+			fmt.Println("The fetched genre, publisher, and page count are not always accurate")
+			fmt.Println("The optional second call is by ID and often gets more details")
+			fmt.Println()
+		}
 
 		// Process the ISBNs
-		books = ProcessISBNs(isbns, books, clearErrors)
+		books = ProcessISBNs(isbns, books, clearErrors, singleHit)
 
 		// Save the updated books
 		// Only save if we have more books than we started with
@@ -91,7 +101,19 @@ func main() {
 			fmt.Println("ERROR converting port to int")
 			check(err)
 		}
-		server := NewServer(portInt)
+
+		// Get the absolute path of the books file
+		absPath, err := filepath.Abs(jsonFile)
+		if err != nil {
+			fmt.Println("ERROR getting absolute path of books file")
+			check(err)
+		}
+
+		server, err := NewServer(portInt, absPath)
+		if err != nil {
+			fmt.Println("ERROR creating server")
+			check(err)
+		}
 		server.Start()
 	}
 
