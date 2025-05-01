@@ -34,7 +34,7 @@
           <a title="Waterstones" href="{{.GetLinkWaterstones}}" target="_blank">WS</a>
         </td>
         {{else}}
-        <td class="isbn" width="1%">{{.ISBN}}</td>
+        <td class="isbn" width="1%"><a href="#">{{.ISBN}}</a></td>
         <td class="status"><span title="{{.Status}}" class="status-icon status-icon-{{.StatusIcon}}">{{.GetStatusLetter}}</span></td>
         <td class="title"><a href="#">{{.Title}}</a></td>
         <td class="author">{{.GetAuthorSortHtmlDisplay}}</td>

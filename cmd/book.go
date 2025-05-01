@@ -42,12 +42,12 @@ func (b *Book) GetSeriesSort() string {
 	return fmt.Sprintf("%s [%s]", b.Series, b.Sequence)
 }
 
-// GetStatusLetter returns the status letter for the book
+// GetStatusLetter returns the status icon letter for the book
 func (b *Book) GetStatusLetter() string {
-	if b.Status == "" {
+	if b.StatusIcon == "" {
 		return "-"
 	}
-	return strings.ToUpper(string(b.Status[0]))
+	return b.StatusIcon
 }
 
 // GetAuthorDisplay returns a formatted string for displaying authors
