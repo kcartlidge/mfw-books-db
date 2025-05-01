@@ -32,8 +32,8 @@ func LoadFile(filename string) []Book {
 
 // SaveFile saves books to a JSON file and creates a daily backup
 func SaveFile(filename string, books []Book) error {
-	// Sort the books before saving
-	SortBooksByTitleAuthorISBN(books)
+	// Sort the books
+	SortBooksByTitle(books, false)
 
 	// Create backup filename with today's date
 	backupDir := filepath.Join(filepath.Dir(filename), "backups")

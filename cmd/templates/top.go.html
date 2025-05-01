@@ -99,35 +99,41 @@
       letter-spacing: -1px;
     }
 
-    h2 {
-      margin: 0;
-      display: inline-block;
-      line-height: 1.2;
-    }
-
-    h2 strong {
-      color: #135d7c;
-    }
 
     table.books {
+      margin-top: 1rem;
       table-layout: fixed;
       width: auto;
       border: 0;
       background-color: #fdfdfd;
       border-spacing: 0;
+      border-bottom: 2px solid #555;
     }
 
     table.books thead {
-      background: #ccc;
+      background: none;
     }
 
     table.books thead tr.header th {
       background: #fff;
-      padding: 0.5rem 1.5rem 0.25rem 0.5rem;
+      padding: 0 0 0.5rem 0.5rem;
       font-weight: normal;
-      font-size: 1.75rem;
+      font-size: 1.25rem;
       letter-spacing: -1px;
       border-bottom: none;
+    }
+
+    table.books thead tr.header th .count {
+      font-size: 1.5rem;
+      font-weight: bold;
+      background: #135d7c;
+      color: #fff;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.75rem;
+    }
+
+    table.books thead tr:last-child {
+      border-bottom: 2px solid #555;
     }
 
     table.books tbody tr:nth-child(even) td {
@@ -145,19 +151,40 @@
     }
 
     table.books th, table.books td {
-      padding: 0.4rem 1.5rem 0.4rem 0.5rem;
+      padding: 0.4rem 1rem;
       text-align: left;
       vertical-align: top;
     }
 
     table.books th {
       font-weight: normal;
-      padding: 0.25rem 1.5rem 0.25rem 0.5rem;
-      border-bottom: 0.5rem solid #fff;
+      border-bottom: 2px solid #555;
+      padding: 0.5rem 0.5rem;
+    }
+
+    table.books th a {
+      display: block;
+      text-decoration: none;
+      background: #6face9;
+      color: white;
+      padding: 0.1rem 0.75rem;
+      border: 0;
+      border-radius: 0.2rem;
+      margin: 0 0.1rem 0.2rem 0;
+      font-size: 0.9em;
+    }
+
+    table.books th a:hover {
+      border: 0;
+      background: #08f;
+    }
+
+    table.books td {
+      border-left: none;
     }
 
     table.books td+td {
-      padding-right: 0.25rem;
+      border-left: 2px solid #ddd;
     }
 
     header .filename, table.books td.link a {
@@ -207,6 +234,14 @@
       background: #da3131;
     }
 
+    table.books td.rating {
+      white-space: nowrap;
+    }
+
+    table.books td.series {
+      font-size: 0.9em;
+    }
+
     .star {
       font-size: 1.1rem;
       letter-spacing: -2px;
@@ -227,10 +262,9 @@
       color: #000;
       font-size: 0.9rem;
       width: 1rem;
-      padding: 0.2rem 0.5rem;
-      border: solid 1px #666;
-      border-radius: 0.25rem;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      padding: 0.1rem 0.25rem;
+      border: solid 2px #666;
+      border-radius: 0.75rem;
     }
 
     .status-icon-U {
@@ -238,12 +272,11 @@
     }
 
     .status-icon-C {
-      font-weight: bold;
-      background: #f9ebb9;
+      background: #fcce89;
     }
 
     .status-icon-N {
-      background: #e6d8c3;
+      background: #f9eec5;
     }
 
     .status-icon-R {
@@ -251,11 +284,11 @@
     }
 
     .status-icon-A {
-      background: #d7acac;
+      background: #f3baba;
     }
 
     .status-icon-X {
-      background: #d7acac;
+      background: #f3baba;
     }
 
     .status-icon-L {
@@ -263,7 +296,16 @@
     }
 
     .status-icon-G {
-      background: #d7acac;
+      background: #f3baba;
+    }
+
+    table.books td.status {
+      text-align: center;
+    }
+
+    table.books td.current-sort {
+      border-left: 2px solid #000;
+      border-right: 2px solid #000;
     }
   </style>
 </head>
@@ -274,7 +316,7 @@
     <div class="filename">{{.Filename}}</div>
   </header>
   <nav>
-    <a href="/">All Books</a>
+    <a href="/">Show All Books</a>
   </nav>
   <main>
 {{end}}

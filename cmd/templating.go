@@ -9,9 +9,10 @@ import (
 
 // TemplateData represents the data passed to templates
 type TemplateData struct {
-	Title    string
-	Filename string
-	Content  interface{}
+	Title     string
+	Filename  string
+	Content   interface{}
+	SortField string
 }
 
 // Templates holds all our templates

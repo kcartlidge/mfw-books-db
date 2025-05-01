@@ -15,9 +15,10 @@ import (
 
 // Server is a simple web server that serves the database
 type Server struct {
-	Port     int
-	Router   *mux.Router
-	Filename string
+	Port          int
+	Router        *mux.Router
+	Filename      string
+	CookieHandler *CookieHandler
 }
 
 // NewServer creates a new server
@@ -28,14 +29,22 @@ func NewServer(port int, filename string) (*Server, error) {
 		return nil, fmt.Errorf("error initializing templates: %w", err)
 	}
 
+	// Initialize cookie handler
+	cookieHandler, err := NewCookieHandler()
+	if err != nil {
+		return nil, fmt.Errorf("error initializing cookie handler: %w", err)
+	}
+
 	s := &Server{
-		Port:     port,
-		Router:   mux.NewRouter(),
-		Filename: filename,
+		Port:          port,
+		Router:        mux.NewRouter(),
+		Filename:      filename,
+		CookieHandler: cookieHandler,
 	}
 
 	// Add handlers
 	s.Router.HandleFunc("/", s.HomeHandler).Methods("GET")
+	s.Router.HandleFunc("/sort/{field}", s.SortHandler).Methods("GET")
 
 	// Add root-level static file handler (must come after specific routes)
 	s.Router.PathPrefix("/").Handler(http.FileServer(http.Dir("static")))

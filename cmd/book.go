@@ -50,6 +50,22 @@ func (b *Book) GetStatusLetter() string {
 	return b.StatusIcon
 }
 
+// GetFirstAuthorSort returns the first AuthorSort of the book
+func (b *Book) GetFirstAuthorSort() string {
+	if len(b.AuthorSort) == 0 {
+		return ""
+	}
+	return b.AuthorSort[0]
+}
+
+// GetFirstGenre returns the first Genre of the book
+func (b *Book) GetFirstGenre() string {
+	if len(b.Genre) == 0 {
+		return ""
+	}
+	return b.Genre[0]
+}
+
 // GetAuthorDisplay returns a formatted string for displaying authors
 func (b *Book) GetAuthorDisplay() string {
 	return b.getDisplayString(b.Authors)
