@@ -10,7 +10,7 @@
         <th colspan="8"><span class="count">{{len .Content}}</span></th>
       </tr>
       <tr>
-        <th class="isbn {{if eq .SortField "isbn"}}current-sort{{end}}" width="1%"><a href="/sort/isbn">ISBN</a></th>
+        <th class="isbn" width="1%"><a href="/sort/isbn" {{if eq .SortField "isbn"}}class="current-sort"{{end}}>ISBN</a></th>
         <th class="status" width="1%"><a href="/sort/status" {{if eq .SortField "status"}}class="current-sort"{{end}}>Status</a></th>
         <th class="title" width="20%"><a href="/sort/title" {{if eq .SortField "title"}}class="current-sort"{{end}}>Title</a></th>
         <th class="author" width="20%"><a href="/sort/author" {{if eq .SortField "author"}}class="current-sort"{{end}}>Author</a></th>
@@ -22,21 +22,24 @@
     </thead>
     <tbody>
       {{range $books}}
-      <tr>
+      <tr id="b_{{.ISBN}}">
         {{if .IsException}}
         <td class="isbn exception {{if eq $.SortField "isbn"}}current-sort{{end}}">{{.ISBN}}</td>
         <td class="exception" colspan="6 {{if eq $.SortField "status"}}current-sort{{end}}">{{.ExceptionReason}}</td>
         <td class="link exception {{if eq $.SortField "status"}}current-sort{{end}}">
-          <a title="Goodreads" href="{{.GetLinkGoodreads}}" target="_blank">GR</a>
-          <br/>
-          <a title="OpenLibrary" href="{{.GetLinkOpenLibrary}}" target="_blank">OL</a>
-          <a title="LibraryThing" href="{{.GetLinkLibraryThing}}" target="_blank">LT</a>
-          <a title="Waterstones" href="{{.GetLinkWaterstones}}" target="_blank">WS</a>
+          <details>
+            <summary>Links</summary>
+            <a title="Goodreads" href="{{.GetLinkGoodreads}}" target="_blank">GR</a>
+            <br/>
+            <a title="OpenLibrary" href="{{.GetLinkOpenLibrary}}" target="_blank">OL</a>
+            <a title="LibraryThing" href="{{.GetLinkLibraryThing}}" target="_blank">LT</a>
+            <a title="Waterstones" href="{{.GetLinkWaterstones}}" target="_blank">WS</a>
+          </details>
         </td>
         {{else}}
-        <td class="isbn {{if eq $.SortField "isbn"}}current-sort{{end}}"><a href="#">{{.ISBN}}</a></td>
+        <td class="isbn {{if eq $.SortField "isbn"}}current-sort{{end}}"><a href="/books/edit/{{.ISBN}}">{{.ISBN}}</a></td>
         <td class="status {{if eq $.SortField "status"}}current-sort{{end}}"><span title="{{.Status}}" class="status-icon status-icon-{{.StatusIcon}}">{{.GetStatusLetter}}</span></td>
-        <td class="title {{if eq $.SortField "title"}}current-sort{{end}}"><a href="#">{{.Title}}</a></td>
+        <td class="title {{if eq $.SortField "title"}}current-sort{{end}}"><a href="/books/edit/{{.ISBN}}">{{.Title}}</a></td>
         <td class="author {{if eq $.SortField "author"}}current-sort{{end}}">{{.GetAuthorSortHtmlDisplay}}</td>
         <td class="series {{if eq $.SortField "series"}}current-sort{{end}}">{{.GetSeriesSort}}</td>
         <td class="rating {{if eq $.SortField "rating"}}current-sort{{end}}" title="{{.Rating}} out of 5">
@@ -49,13 +52,18 @@
         </td>
         <td class="genre {{if eq $.SortField "genre"}}current-sort{{end}}">{{.GetGenreHtmlDisplay}}</td>
         <td class="link">
-          <a title="Google Books" href="{{.GetLinkGoogleBooksView}}" target="_blank">GB</a>
-          <a title="Google Books API" href="{{.GetLinkGoogleBooksJson}}" target="_blank">JS</a>
-          <a title="Goodreads" href="{{.GetLinkGoodreads}}" target="_blank">GR</a>
-          <br/>
-          <a title="OpenLibrary" href="{{.GetLinkOpenLibrary}}" target="_blank">OL</a>
-          <a title="LibraryThing" href="{{.GetLinkLibraryThing}}" target="_blank">LT</a>
-          <a title="Waterstones" href="{{.GetLinkWaterstones}}" target="_blank">WS</a>
+          <details>
+            <summary>Links</summary>
+            <a title="Google Books" href="{{.GetLinkGoogleBooksView}}" target="_blank">GB</a>
+            {{if .ID}}
+            <a title="Google Books API" href="{{.GetLinkGoogleBooksJson}}" target="_blank">JS</a>
+            {{end}}
+            <a title="Goodreads" href="{{.GetLinkGoodreads}}" target="_blank">GR</a>
+            <br/>
+            <a title="OpenLibrary" href="{{.GetLinkOpenLibrary}}" target="_blank">OL</a>
+            <a title="LibraryThing" href="{{.GetLinkLibraryThing}}" target="_blank">LT</a>
+            <a title="Waterstones" href="{{.GetLinkWaterstones}}" target="_blank">WS</a>
+          </details>
         </td>
         {{end}}
       </tr>

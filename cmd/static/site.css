@@ -1,0 +1,472 @@
+* {
+  cursor: default;
+}
+
+html {
+  box-sizing: border-box;
+  overflow-y: scroll;
+  border-collapse: collapse;
+}
+
+html,
+body {
+  background: #fff;
+  color: #333;
+}
+
+body {
+  font-family: Verdana, Tahoma, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 12pt;
+  line-height: 1.4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-height: 100vh;
+}
+
+header,
+nav,
+main,
+footer {
+  padding: 0.25rem 2rem;
+}
+
+header {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: #fff;
+}
+
+header h1 {
+  margin: 0;
+  padding-bottom: 0.2rem;
+  line-height: 1;
+}
+
+a,
+a:visited,
+a:link,
+a:active,
+a:hover {
+  cursor: pointer;
+  color: #156fc9;
+  text-decoration: none;
+  border-bottom: 1px solid #156fc9;
+}
+
+a:hover {
+  color: #08f;
+  border-bottom-color: #08f;
+}
+
+nav {
+  background: #e6e6e6;
+}
+
+nav a,
+nav a:visited,
+nav a:link,
+nav a:active,
+nav a:hover {
+  cursor: pointer;
+  display: inline-block;
+  white-space: nowrap;
+  background: #156fc9;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.1rem 0.75rem;
+  border-radius: 0.2rem;
+  margin: 0.25rem 0.1rem;
+}
+
+nav a:hover {
+  text-decoration: none;
+  background: #08f;
+}
+
+main {
+  padding: 1rem 2rem 4rem 2rem;
+}
+
+footer {
+  padding: 0.2rem 2rem 1rem 2rem;
+  font-size: 0.8rem;
+}
+
+h1 {
+  letter-spacing: -1px;
+}
+
+
+table.books {
+  margin-top: 1rem;
+  table-layout: fixed;
+  width: auto;
+  background-color: #fdfdfd;
+  border-spacing: 0;
+}
+
+table.books thead {
+  background: none;
+}
+
+table.books thead tr.header th {
+  background: #fff;
+  padding: 0.75rem 0 0.5rem 0.5rem;
+  font-weight: normal;
+  font-size: 1.25rem;
+  letter-spacing: -1px;
+  border-bottom: none;
+}
+
+table.books thead tr.header th .count {
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: #135d7c;
+  color: #fff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.75rem;
+}
+
+table.books thead tr:last-child {
+  border-bottom: 2px solid #555;
+}
+
+table.books tbody tr:nth-child(even) td {
+  background-color: #f3f3f3;
+}
+
+table.books tbody tr:hover td {
+  background-color: #e4e4e4;
+  animation: fadeInHover 0.5s;
+}
+
+@keyframes fadeInHover {
+  0% {
+    background-color: #f3f3f3;
+  }
+
+  100% {
+    background-color: #e4e4e4;
+  }
+}
+
+table.books th,
+table.books td {
+  padding: 0.4rem 1rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+table.books th {
+  font-weight: normal;
+  border-bottom: 2px solid #555;
+  padding: 0.5rem 0.5rem;
+}
+
+table.books th a {
+  display: block;
+  text-decoration: none;
+  background: #156fc9;
+  color: white;
+  padding: 0.2rem 0.75rem;
+  border: 0;
+  border-radius: 0.2rem;
+  margin: 0 0.1rem 0.2rem 0;
+  font-size: 0.9em;
+}
+
+table.books th a:hover {
+  border: 0;
+  background: #08f;
+}
+
+table.books td {
+  border-left: none;
+  border-right: 2px solid #eee;
+}
+
+table.books td+td {
+  border-left: 2px solid #eee;
+}
+
+table.books td:last-child {
+  border-right: none;
+}
+
+header .filename,
+table.books td.link a {
+  font-family: 'PT Mono', 'Lucida Console', Consolas, Monaco, monospace;
+  font-size: 0.9rem;
+  line-height: 1.2;
+  opacity: 0.8;
+}
+
+table.books td.series {
+  font-size: 0.9rem;
+}
+
+table.books td.genre {
+  padding-top: 0.4rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.exception {
+  color: #da3131;
+}
+
+table.books td a {
+  display: block;
+  border: 0;
+}
+
+table.books td.link {
+  white-space: nowrap;
+  text-align: left;
+}
+
+table.books td.link summary {
+  padding-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #156fc9;
+  width: 7rem;
+  cursor: pointer;
+  white-space: nowrap;
+  text-align: left;
+}
+
+table.books td.link a {
+  display: inline-block;
+  text-decoration: none;
+  background: #156fc9;
+  color: white;
+  padding: 0.1rem 0.25rem;
+  border: 0;
+  border-radius: 0.2rem;
+  margin: 0 0.1rem 0.2rem 0;
+}
+
+table.books td.link a:hover {
+  border: 0;
+  background: #08f;
+}
+
+table.books td.link.exception a {
+  background: #da3131;
+}
+
+table.books td.rating {
+  white-space: nowrap;
+}
+
+.star {
+  font-size: 1.1rem;
+  letter-spacing: -2px;
+  margin: 0 0 0 -0.2rem;
+  padding: 0;
+  color: #c4c4c4;
+}
+
+.star.filled {
+  color: #339b2a;
+}
+
+.status-icon {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  background: #ddd;
+  color: #000;
+  font-size: 0.9rem;
+  width: 1rem;
+  padding: 0.1rem 0.25rem;
+  border: solid 2px #666;
+  border-radius: 0.75rem;
+}
+
+.status-icon-U {
+  background: #e1e1e1;
+}
+
+.status-icon-C {
+  background: #fcce89;
+}
+
+.status-icon-N {
+  background: #f9eec5;
+}
+
+.status-icon-R {
+  background: #d2dfc5;
+}
+
+.status-icon-A {
+  background: #f3baba;
+}
+
+.status-icon-X {
+  background: #f3baba;
+}
+
+.status-icon-L {
+  background: #a9cce6;
+}
+
+.status-icon-G {
+  background: #f3baba;
+}
+
+table.books td.status {
+  text-align: center;
+}
+
+table.books th a.current-sort {
+  background: #08f;
+}
+
+table.books td.current-sort {
+  background: #f6f6f6;
+}
+
+table.books tbody tr:nth-child(even) td.current-sort {
+  background: #eaeaea;
+}
+
+
+/* Edit form */
+
+.form-frame {
+  width: 50rem;
+  background-color: #eee;
+  padding: 1.75rem 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 8px 8px 0 #ccc;
+}
+
+.form-frame h2 {
+  margin: 0;
+  padding: 0 0 1rem 0;
+}
+
+h2 .small {
+  font-size: 0.9rem;
+  font-weight: normal;
+  opacity: 0.6;
+}
+
+.edit-form {
+  vertical-align: top;
+  display: grid;
+  grid-template-columns: 1fr 7fr;
+  gap: 0.5rem 1rem;
+}
+
+.edit-form label {
+  padding: 0.5rem 0 0 0;
+  font-size: 0.9rem;
+  display: inline-block;
+  white-space: nowrap;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.edit-form input,
+.edit-form textarea,
+.edit-form select {
+  background: #fcfcfc;
+  cursor: text;
+  font-family: 'PT Mono', 'Lucida Console', Consolas, Monaco, monospace;
+  font-size: 1.1rem;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #777;
+  border-radius: 0.25rem;
+}
+
+.edit-form input.medium,
+.edit-form select.medium {
+  width: 20rem;
+}
+
+.edit-form input.narrow,
+.edit-form select.narrow {
+  width: 10rem;
+}
+
+.edit-form select {
+  cursor: pointer;
+}
+
+.edit-form textarea {
+  min-height: 4rem;
+}
+
+.edit-form textarea.tall {
+  min-height: 10rem;
+}
+
+.edit-form label.prefilled, .edit-form div.prefilled {
+  opacity: 0.7;
+}
+
+.edit-form div.prefilled {
+  background: #fff;
+  font-size: 1.1rem;
+  padding: 0.3rem 1rem;
+}
+
+.edit-form button {
+  background: #439954;
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: inline-block;
+  white-space: nowrap;
+  padding: 0.25rem 1rem;
+  border: 0;
+  border-radius: 0.2rem;
+  margin: 0.25rem 0.1rem;
+}
+
+.edit-form button:hover {
+  background: #63b974;
+}
+
+.edit-form button.cancel {
+  background: #b94334;
+}
+
+.edit-form button.cancel:hover {
+  background: #d96354;
+}
+
+.edit-form a.cancel {
+  background: #b94334;
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: inline-block;
+  white-space: nowrap;
+  padding: 0.1rem 0.75rem;
+  border: 0;
+  border-radius: 0.2rem;
+  margin: 0.25rem 0.1rem;
+  text-decoration: none;
+  vertical-align: top;
+}
+
+.edit-form a.cancel:hover {
+  background: #d96354;
+  text-decoration: none;
+}
+
+p.exception {
+  margin: 0;
+  padding: 0;
+  font-size: 1.5rem;
+}
+

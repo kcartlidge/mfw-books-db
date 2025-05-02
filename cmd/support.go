@@ -21,3 +21,19 @@ func check(err error) {
 func joinWithAmpersand(items []string) string {
 	return strings.Join(items, " & ")
 }
+
+// splitAndTrim splits a string on ampersands and trims each segment
+func splitAndTrim(s string) []string {
+	if s == "" {
+		return []string{}
+	}
+	segments := strings.Split(s, "&")
+	result := make([]string, 0, len(segments))
+	for _, segment := range segments {
+		segment = strings.TrimSpace(segment)
+		if segment != "" {
+			result = append(result, segment)
+		}
+	}
+	return result
+}

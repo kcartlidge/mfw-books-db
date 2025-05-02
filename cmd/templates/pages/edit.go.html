@@ -1,0 +1,112 @@
+{{define "edit"}}
+{{template "top" .}}
+
+{{if .Content}}
+  {{$book := .Content}}
+
+  {{if $book.IsException}}
+    <div>
+      <strong>Exception:</strong>
+      <p class="exception">{{$book.ExceptionReason}}</p>
+    </div>
+  {{else}}
+    <h2>
+      <a href="{{$book.GetLinkGoogleBooksView}}" title="Open entry in Google Books" target="_blank">{{$book.ISBN}}</a>
+      <span class="small">(opens entry in Google Books)</span>
+    </h2>
+    <div class="form-frame" data-isbn="{{$book.ISBN}}">
+      <form class="edit-form" method="POST" action="/books/save/{{$book.ISBN}}">
+        <input type="hidden" name="id" value="{{$book.ID}}">
+
+        <label>Title</label>
+        <div><input type="text" name="title" value="{{$book.Title}}" placeholder="Title" required autofocus></div>
+
+        <label>Author Sort</label>
+        <div><input type="text" name="authorSort" value="{{$book.GetAuthorSortForEdit}}" placeholder="Author Sort" required></div>
+
+        <label>Genres</label>
+        <div><input type="text" name="genres" value="{{$book.GetGenresForEdit}}" placeholder="Genres" required></div>
+
+        <label>Series</label>
+        <div>
+          <input type="text" class="medium" name="series" value="{{$book.Series}}" placeholder="Series" id="series-input" list="series-list">
+          <datalist id="series-list">
+            {{range .Series}}
+              <option value="{{.}}">
+            {{end}}
+          </datalist>
+          <input type="text" class="narrow" name="sequence" value="{{$book.Sequence}}" placeholder="Sequence">
+        </div>
+
+        <label>Status</label>
+        <div>
+          <select name="status" class="medium">
+            <option value="">No Status</option>
+            <option value="U - Unread" {{ if eq $book.StatusIcon "U" }}selected="selected"{{ end }}>U - Unread</option>
+            <option value="C - Current" {{ if eq $book.StatusIcon "C" }}selected="selected"{{ end }}>C - Current</option>
+            <option value="N - Next up" {{ if eq $book.StatusIcon "N" }}selected="selected"{{ end }}>N - Next up</option>
+            <option value="R - Read" {{ if eq $book.StatusIcon "R" }}selected="selected"{{ end }}>R - Read</option>
+            <option value="A - Abandoned" {{ if eq $book.StatusIcon "A" }}selected="selected"{{ end }}>A - Abandoned</option>
+            <option value="X - Unwanted" {{ if eq $book.StatusIcon "X" }}selected="selected"{{ end }}>X - Unwanted</option>
+            <option value="L - Lent out" {{ if eq $book.StatusIcon "L" }}selected="selected"{{ end }}>L - Lent out</option>
+            <option value="G - Gone" {{ if eq $book.StatusIcon "G" }}selected="selected"{{ end }}>G - Gone</option>
+          </select>
+          <select name="rating" class="narrow">
+            <option value="0" {{ if eq $book.Rating 0 }}selected="selected"{{ end }}>No Rating</option>
+            <option value="1" {{ if eq $book.Rating 1 }}selected="selected"{{ end }}>1 Star</option>
+            <option value="2" {{ if eq $book.Rating 2 }}selected="selected"{{ end }}>2 Stars</option>
+            <option value="3" {{ if eq $book.Rating 3 }}selected="selected"{{ end }}>3 Stars</option>
+            <option value="4" {{ if eq $book.Rating 4 }}selected="selected"{{ end }}>4 Stars</option>
+            <option value="5" {{ if eq $book.Rating 5 }}selected="selected"{{ end }}>5 Stars</option>
+          </select>
+        </div>
+
+        <label>Notes</label>
+        <div><textarea name="notes" class="tall" placeholder="Notes">{{$book.Notes}}</textarea></div>
+
+        <label>&nbsp;</label>
+        <div>
+          <button type="submit">Save Changes</button>
+          <a href="/#b_{{$book.ISBN}}" class="cancel">Abandon</a>
+        </div>
+
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+
+        <label class="prefilled">Authors</label>
+        <div class="prefilled">{{$book.GetAuthorsForEdit}}</div>
+
+        <label class="prefilled">Description</label>
+        <div class="prefilled">{{$book.Description}}</div>
+
+        <label class="prefilled">Published Date</label>
+        <div class="prefilled">{{$book.PublishedDate}}</div>
+
+        <label class="prefilled">Publisher</label>
+        <div class="prefilled">{{$book.Publisher}}</div>
+
+        <label class="prefilled">Page Count</label>
+        <div class="prefilled">{{$book.PageCount}}</div>
+
+        <label class="prefilled">Language</label>
+        <div class="prefilled">{{$book.Language}}</div>
+      </form>
+    </div>
+  {{end}}
+{{else}}
+  <h1>Book not found.</h1>
+{{end}}
+
+<script>
+// If the user presses the Escape key, go back to the index page
+// Doesn't need to work in all clients to be useful in some
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") {
+    const isbn = document.querySelector('.form-frame').dataset.isbn;
+    window.location.href = "/#b_" + isbn;
+  }
+});
+</script>
+
+{{template "base" .}}
+{{end}}

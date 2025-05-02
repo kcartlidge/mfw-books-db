@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"io"
 	"path/filepath"
+	"strings"
 )
 
 // TemplateData represents the data passed to templates
@@ -13,6 +14,7 @@ type TemplateData struct {
 	Filename  string
 	Content   interface{}
 	SortField string
+	Series    []string
 }
 
 // Templates holds all our templates
@@ -80,7 +82,7 @@ func NewTemplates() (*Templates, error) {
 		}
 
 		// Store the combined template
-		t.pages[filepath.Base(page)] = combined
+		t.pages[strings.Split(filepath.Base(page), ".")[0]] = combined
 	}
 
 	// Store the templates globally
@@ -95,6 +97,6 @@ func (t *Templates) Render(w io.Writer, name string, data TemplateData) error {
 		return errors.New("template not found: " + name)
 	}
 
-	// Execute the home template, which will include top and base as needed
-	return tmpl.ExecuteTemplate(w, "home", data)
+	// Execute the template, which will include top and base as needed
+	return tmpl.ExecuteTemplate(w, strings.TrimSuffix(name, ".go.html"), data)
 }

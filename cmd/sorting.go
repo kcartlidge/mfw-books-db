@@ -182,3 +182,14 @@ func sortBooksByFallbackOrder(books []Book) {
 		return strings.Compare(a.Title, b.Title)
 	})
 }
+
+// SortStrings sorts a slice of strings alphabetically
+func SortStrings(strings []string, descending bool) {
+	slices.SortFunc(strings, func(a, b string) int {
+		result := cmp.Compare(a, b)
+		if descending {
+			return -result
+		}
+		return result
+	})
+}

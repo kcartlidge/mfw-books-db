@@ -45,9 +45,18 @@ func (ch *CookieHandler) SetCookie(w http.ResponseWriter, name string, value str
 		Value:    encoded,
 		Path:     "/",
 		MaxAge:   maxAge,
-		Secure:   true,
 		HttpOnly: true,
+
+		// NOT Safari
+		Secure:   true,
 		SameSite: http.SameSiteStrictMode,
+
+		// Safari
+		// The following should NEVER be used when serving sites externally
+		// They are needed for local development because Safari will not
+		// allow cookies to be set against 'localhost' without them.
+		// Secure:   false,
+		// SameSite: http.SameSiteNoneMode,
 	}
 
 	// Set the cookie

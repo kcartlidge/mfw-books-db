@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"log"
 	"os"
 	"path/filepath"
 	"strings"
@@ -20,13 +19,21 @@ func LoadFile(filename string) []Book {
 	}
 	defer f.Close()
 
-	// Decode the JSON file into a slice of Book structs
+	content, err := os.ReadFile(filename)
+	check(err)
+
 	var books []Book
-	decoder := json.NewDecoder(f)
-	if err := decoder.Decode(&books); err != nil {
-		log.Fatalf("error decoding JSON: %v", err)
-		return []Book{}
+	if err := json.Unmarshal(content, &books); err != nil {
+		check(err)
 	}
+
+	// Validate ratings
+	for i := range books {
+		if books[i].Rating < 0 || books[i].Rating > 5 {
+			books[i].Rating = 0
+		}
+	}
+
 	return books
 }
 
@@ -34,6 +41,23 @@ func LoadFile(filename string) []Book {
 func SaveFile(filename string, books []Book) error {
 	// Sort the books
 	SortBooksByTitle(books, false)
+
+	// Ensure array fields are never null and copy authorSort to authors if needed
+	for i := range books {
+		if books[i].Authors == nil {
+			books[i].Authors = []string{}
+		}
+		if books[i].AuthorSort == nil {
+			books[i].AuthorSort = []string{}
+		}
+		if books[i].Genre == nil {
+			books[i].Genre = []string{}
+		}
+		// If authors is empty but authorSort has values, copy them
+		if len(books[i].Authors) == 0 && len(books[i].AuthorSort) > 0 {
+			books[i].Authors = books[i].AuthorSort
+		}
+	}
 
 	// Create backup filename with today's date
 	backupDir := filepath.Join(filepath.Dir(filename), "backups")
@@ -88,12 +112,9 @@ func LoadISBNs(filename string) []string {
 	}
 	defer f.Close()
 
-	content, err := os.ReadFile(filename)
-	check(err)
-
-	// Replace CRLF with LF, then split
-	content = []byte(strings.ReplaceAll(string(content), "\r\n", "\n"))
-	lines := strings.Split(string(content), "\n")
+	// Read the file into a string and split it into lines
+	content := readFileNormalisedToLF(filename)
+	lines := strings.Split(content, "\n")
 
 	// Trim each line and add it to a slice if it's not empty
 	lineNumber := 0
@@ -156,4 +177,29 @@ func CheckFileExists(filename string) (bool, *os.File, error) {
 		return false, nil, err
 	}
 	return true, f, nil
+}
+
+// readFileNormalisedToLF reads a file and returns it with all CRs removed
+func readFileNormalisedToLF(filename string) string {
+	// Sanity check
+	exists, f, err := CheckFileExists(filename)
+	check(err)
+	if !exists {
+		return ""
+	}
+	defer f.Close()
+
+	// Read the file into a byte slice
+	bytes, err := io.ReadAll(f)
+	check(err)
+	text := string(bytes)
+
+	// Normalise the file to LF
+	// Looks odd but that's because some ISBN scanners (eg Alfa)
+	// create text files with "\r" delimiters (not "\r\n" or "\n")
+	text = strings.ReplaceAll(text, "\r", "\n")
+	text = strings.ReplaceAll(text, "\n\n", "\n")
+
+	// Return the text
+	return text
 }

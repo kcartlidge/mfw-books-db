@@ -66,17 +66,32 @@ func (b *Book) GetFirstGenre() string {
 	return b.Genre[0]
 }
 
+// GetGenresForEdit returns a formatted string for editing as ... & ... & ...
+func (b *Book) GetGenresForEdit() string {
+	return b.getLines(b.Genre, " & ")
+}
+
 // GetAuthorDisplay returns a formatted string for displaying authors
 func (b *Book) GetAuthorDisplay() string {
 	return b.getDisplayString(b.Authors)
 }
 
-// GetAuthorSortDisplay returns a formatted string for displaying author sorts
+// GetAuthorSortDisplay returns a formatted string for displaying author sorts as ...[+n]
 func (b *Book) GetAuthorSortDisplay() string {
 	return b.getDisplayString(b.AuthorSort)
 }
 
-// GetAuthorSortHtmlDisplay returns a formatted string for displaying author sorts
+// GetAuthorsForEdit returns a formatted string for editing as ... & ... & ...
+func (b *Book) GetAuthorsForEdit() string {
+	return b.getLines(b.Authors, " & ")
+}
+
+// GetAuthorSortForEdit returns a formatted string for editing as ... & ... & ...
+func (b *Book) GetAuthorSortForEdit() string {
+	return b.getLines(b.AuthorSort, " & ")
+}
+
+// GetAuthorSortHtmlDisplay returns a formatted string for displaying author sorts as lines
 func (b *Book) GetAuthorSortHtmlDisplay() template.HTML {
 	return template.HTML(b.getHtmlLines(b.AuthorSort))
 }
@@ -134,13 +149,18 @@ func (b *Book) getDisplayString(items []string) string {
 
 // getHtmlLines returns HTML for the array items as a list of lines
 func (b *Book) getHtmlLines(items []string) string {
+	return b.getLines(items, "<br/>")
+}
+
+// getLines returns a string for the array items as a list of lines with a join string
+func (b *Book) getLines(items []string, joinWith string) string {
 	if len(items) == 0 {
 		return ""
 	}
 	if len(items) == 1 {
 		return items[0]
 	}
-	return strings.Join(items, "<br/>")
+	return strings.Join(items, joinWith)
 }
 
 // GetLinkGoodreads returns the link for the book on Goodreads
