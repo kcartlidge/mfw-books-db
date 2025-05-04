@@ -1,36 +1,130 @@
 # MFW Books DB
 
-A Go tool that fetches book information from Google Books and Open Library APIs using ISBNs, maintaining a catalogue in JSON form.
+A Go tool that fetches book information from Google Books and provides a website for maintaining a catalogue in a JSON file.
 
 - Copyright 2025 K Cartlidge - [AGPL license](./LICENSE.txt)
 
 ISBNs can be scanned in via mobile apps like [Alfa ISBN Scanner](https://www.alfaebooks.com/help/isbn_scanner) which lets you gather ISBNs then share them to an email as a text file suitable for input here.
 
-**WARNING**
-Working on a JSON (or any) file stored on some cloud syncing services can screw up the file.
-For example I've seen PCloud append masses of NULLs to the JSON file after an edit.
-To be safe, make changes on a local version and copy or sync it to your backups afterwards.
+![screenshot](./screenshot.png)
+
+---
+
+**WARNING:**
+Working on a JSON (or any) file stored on some cloud syncing services can screw up the file.  For example I've seen PCloud append masses of NULLs to the JSON file after an edit.  To be safe, make changes on a local version and copy or sync it to your backups afterwards.
 
 ## Contents
 
 - [Features](#features)
-- [API Rate Limits](#api-rate-limits)
-- [Program Rate Limiting](#program-rate-limiting)
 - [Usage](#usage)
+    - [Importing from a List of ISBNs](#importing-from-a-list-of-isbns)
+    - [Launching the Website](#launching-the-website)
 - [File Formats](#file-formats)
 - [Error Handling](#error-handling)
+- [API Rate Limits](#api-rate-limits)
+- [Program Rate Limiting](#program-rate-limiting)
 - [Producing New Builds](#producing-new-builds)
 
 ## Features
 
-- Fetches book metadata from Google Books
-- Maintains a collection in JSON format
-- Skips ISBNs already successfully fetched previously
-- Tidies title and authors for better auto-content
+- Book management website (deliberately simple and fast)
+    - Maintains your collection in a readable/editable JSON format
+- Automatic import from a text file of ISBNs
+    - Fetches book metadata from Google Books
+    - Skips ISBNs already successfully fetched previously
+    - Tidies title and authors for better auto-content
+- No external dependencies (other than an ISBN scanner)
+
+## Usage
+
+There are builds for Mac, Windows, and Linux in the [builds](./cmd/builds) folder.
+Download the relevant one and place it somewhere reachable in your `PATH`.
+There are *no* external dependencies to install.
+
+### Importing from a List of ISBNs
+
+- Create a text file with one ISBN per line
+- Run your downloaded build, providing filenames
+    ```bash
+    cd <wherever>
+    ./mfw-books-db  -file books.json -isbns isbns.txt
+    ```
+- Results will be written/updated in the specified JSON file
+- Repeat from step 3 to add more ISBNS (duplicates are ignored)
+
+### Launching the Website
+
+- Specify a port at launch you'll get a web site
+    ```bash
+    cd <wherever>
+    ./mfw-books-db  -file books.json -serve 8000
+    ```
+- Open the website (eg http://localhost:8000)
+
+You can still include the ISBN import and the import will run before the website is launched.
+
+## File Formats
+
+`isbns.txt`
+
+    9781841493138
+    9781841493145
+    9781841493152
+
+`books.json`
+
+``` json
+[
+    {
+    "id": "WwB7QgAACAAJ",
+    "isbn": "033026656X",
+    "title": "Many-Colored Land, the",
+    "authors": [
+        "Julian May"
+    ],
+    "genre": [
+        "Science Fiction",
+        "Fantasy"
+    ],
+    "link": "https://www.googleapis.com/books/v1/volumes/WwB7QgAACAAJ",
+    "publishedDate": "1982",
+    "publisher": "Pan",
+    "pageCount": 411,
+    "language": "en",
+    "description": "This is the first book in The Saga of the Exiles series. Among the misfits and mavericks of the 22nd century, there are those who pass through the time-doors of the Pliocene Epoch into the battleground of two warring races from a planet far away.",
+    "authorSort": [
+        "May, Julian"
+    ],
+    "series": "Saga of the Exiles",
+    "sequence": "1",
+    "status": "R - Read",
+    "rating": 5,
+    "notes": "",
+    "statusIcon": "R",
+    "modifiedUtc": "2025-05-01T18:48:16Z",
+    "isException": false,
+    "exceptionReason": ""
+    },
+    ...
+]
+```
+
+## Error Handling
+
+The program includes error handling for:
+- Rate limit errors
+- Network errors
+- Missing or invalid ISBNs
+- API response errors
+
+Failed requests will still be added to the JSON file but with the exception flagged. The program will continue processing remaining ISBNs.
+
+You can pass `--clear-errors` at launch to remove them from your JSON file automatically.  If you want to fill in their details manually edit their entry to set `isException` to false.
 
 ## API Rate Limits
 
-### Google Books API
+We use the Google Books API.
+
 - Free tier: 1,000 requests per day
 - No authentication required for basic queries
 - No per-second rate limit specified
@@ -47,69 +141,7 @@ The program implements the following rate limiting:
 - Up to 3 retries for failed requests
 - 2-second delay between retries
 - Automatic handling of rate limit errors (HTTP 429)
-
-## Usage
-
-There are builds for Mac, Windows, and Linux in the [builds](./cmd/builds) folder.
-Download the relevant one and place it somewhere reachable in your `PATH`.
-There are *no* external dependencies to install.
-
-1. Create a folder for your book data
-2. Create a file named `isbns.txt` in that folder
-3. Add ISBNs to the file, one per line
-4. Run your downloaded build
-    ```bash
-    cd <wherever>
-    ./mfw-books-db <folder_path>
-    ```
-5. Results will be written/updated in `books.json` in the specified folder
-6. Repeat from step 3 to add more ISBNS (duplicates are ignored)
-
-## File Formats
-
-`isbns.txt`
-
-    9781841493138
-    9781841493145
-    9781841493152
-
-`books.json`
-
-``` json
-[
-    {
-        "isbn": "9780356517186",
-        "title": "Some Desperate Glory",
-        "authors": "Emily Tesh",
-        "authorSort": "Tesh, Emily",
-        "series": null,
-        "sequence": null,
-        "genres": [ "Science Fiction" ],
-        "link": "https://books.google.com/books?id=fMSLzgEACAAJ\u0026dq=isbn:9780356517186",
-        "isException": false,
-        "exceptionReason": "",
-        "modifiedUtc": "2025-04-23T18:07:40.615828Z",
-        "status": "U - Unread",
-        "rating": null,
-        "notes": "",
-        "statusIcon": "U",
-        "seriesSort": ""
-    },
-    ...
-]
-```
-
-## Error Handling
-
-The program includes error handling for:
-- Rate limit errors
-- Network errors
-- Missing or invalid ISBNs
-- API response errors
-
-Failed requests will still be added to the JSON file but with the exception flagged. The program will continue processing remaining ISBNs.
-
-If an errored ISBN is later included in another search it's presence in the JSON file will be ignored and another attempt made.
+- Rate limits and retries don't apply to the optional 2nd hit
 
 ## Producing New Builds
 
