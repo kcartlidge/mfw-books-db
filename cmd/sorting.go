@@ -3,6 +3,7 @@ package main
 import (
 	"cmp"
 	"slices"
+	"strconv"
 	"strings"
 )
 
@@ -86,24 +87,7 @@ func SortBooksByAuthor(books []Book, descending bool) {
 
 // SortBooksBySeries sorts books by series, then author, then sequence
 func SortBooksBySeries(books []Book, descending bool) {
-	sortBooksByFallbackOrder(books)
-	slices.SortStableFunc(books, func(a, b Book) int {
-		// If either book has no series, sort it to the end
-		if a.Series == "" && b.Series == "" {
-			return 0
-		} else if a.Series == "" {
-			return 1 // a has no series, sort it after b
-		} else if b.Series == "" {
-			return -1 // b has no series, sort it after a
-		}
-
-		// Both have series, compare them
-		result := strings.Compare(a.Series, b.Series)
-		if descending {
-			return -result
-		}
-		return result
-	})
+	sortBooksByFallbackOrderSupportingDescendingSeries(books, descending)
 }
 
 // SortBooksByRating sorts books by rating, then author, then series/sequence
@@ -148,8 +132,24 @@ func SortBooksByGenre(books []Book, descending bool) {
 	})
 }
 
+// SortStrings sorts a slice of strings alphabetically
+func SortStrings(strings []string, descending bool) {
+	slices.SortFunc(strings, func(a, b string) int {
+		result := cmp.Compare(a, b)
+		if descending {
+			return -result
+		}
+		return result
+	})
+}
+
 // sortBooksByFallbackOrder sorts books by Series, then Sequence, then Author, then Title
 func sortBooksByFallbackOrder(books []Book) {
+	sortBooksByFallbackOrderSupportingDescendingSeries(books, false)
+}
+
+// sortBooksByFallbackOrder sorts books by Series, then Sequence, then Author, then Title
+func sortBooksByFallbackOrderSupportingDescendingSeries(books []Book, descending bool) {
 	slices.SortStableFunc(books, func(a, b Book) int {
 		// If either book has no series, sort it to the end
 		if a.Series == "" && b.Series == "" {
@@ -161,14 +161,16 @@ func sortBooksByFallbackOrder(books []Book) {
 		} else {
 			// Both have series, compare them
 			seriesResult := strings.Compare(a.Series, b.Series)
+			if descending {
+				seriesResult = -seriesResult
+			}
 			if seriesResult != 0 {
 				return seriesResult
 			}
 		}
 
 		// Compare sequence
-		sequenceResult := strings.Compare(a.Sequence, b.Sequence)
-		if sequenceResult != 0 {
+		if sequenceResult := compareSequence(a, b); sequenceResult != 0 {
 			return sequenceResult
 		}
 
@@ -183,13 +185,66 @@ func sortBooksByFallbackOrder(books []Book) {
 	})
 }
 
-// SortStrings sorts a slice of strings alphabetically
-func SortStrings(strings []string, descending bool) {
-	slices.SortFunc(strings, func(a, b string) int {
-		result := cmp.Compare(a, b)
-		if descending {
-			return -result
+// compareSequence compares two books by their sequence
+func compareSequence(a, b Book) int {
+	// If either sequence is empty, sort it to the end
+	if a.Sequence == "" && b.Sequence == "" {
+		return 0
+	} else if a.Sequence == "" {
+		return 1 // a has no sequence, sort it after b
+	} else if b.Sequence == "" {
+		return -1 // b has no sequence, sort it after a
+	}
+
+	// Try to parse both sequences as numbers
+	aNum, aErr := strconv.Atoi(a.Sequence)
+	bNum, bErr := strconv.Atoi(b.Sequence)
+
+	// If both are pure numbers, compare them numerically
+	if aErr == nil && bErr == nil {
+		return cmp.Compare(aNum, bNum)
+	}
+
+	// Split into number and text parts
+	aNumStr := ""
+	aText := ""
+	for i, c := range a.Sequence {
+		if c >= '0' && c <= '9' {
+			aNumStr += string(c)
+		} else {
+			aText = a.Sequence[i:]
+			break
 		}
+	}
+
+	bNumStr := ""
+	bText := ""
+	for i, c := range b.Sequence {
+		if c >= '0' && c <= '9' {
+			bNumStr += string(c)
+		} else {
+			bText = b.Sequence[i:]
+			break
+		}
+	}
+
+	// Convert numeric parts
+	aNum, _ = strconv.Atoi(aNumStr)
+	bNum, _ = strconv.Atoi(bNumStr)
+
+	// Compare numeric parts first
+	if result := cmp.Compare(aNum, bNum); result != 0 {
 		return result
-	})
+	}
+
+	// If numeric parts are equal, pure numbers sort before alphanumeric
+	if aErr == nil {
+		return -1 // a is pure number, sort it before b
+	}
+	if bErr == nil {
+		return 1 // b is pure number, sort it before a
+	}
+
+	// Both are alphanumeric with same number, compare text parts
+	return strings.Compare(aText, bText)
 }
