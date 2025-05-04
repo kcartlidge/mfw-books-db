@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+	"unicode"
 
 	"github.com/gorilla/mux"
 )
@@ -144,6 +145,24 @@ func (s *Server) EditHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	SortStrings(series, false) // Use existing sort function
 
+	// Create a map to store unique genres
+	genreMap := make(map[string]bool)
+	for _, b := range books {
+		if len(b.Genre) > 0 && b.Genre[0] != "" {
+			genreMap[b.Genre[0]] = true
+		}
+		if len(b.Genre) > 1 && b.Genre[1] != "" {
+			genreMap[b.Genre[1]] = true
+		}
+	}
+
+	// Convert map to slice and sort
+	genres := make([]string, 0, len(genreMap))
+	for g := range genreMap {
+		genres = append(genres, g)
+	}
+	SortStrings(genres, false)
+
 	// Create a new template manager
 	templates, err := NewTemplates()
 	if err != nil {
@@ -157,6 +176,7 @@ func (s *Server) EditHandler(w http.ResponseWriter, r *http.Request) {
 		Filename: s.Filename,
 		Content:  book,
 		Series:   series,
+		Genres:   genres,
 	}
 
 	// Render the template
@@ -211,16 +231,17 @@ func (s *Server) SaveHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Update only the allowed fields
-	books[bookIndex].Title = title
+	books[bookIndex].Title = strings.TrimSpace(title)
 	books[bookIndex].AuthorSort = splitAndTrim(authorSort)
-	books[bookIndex].Genre = splitAndTrim(r.FormValue("genres"))
-	books[bookIndex].Series = r.FormValue("series")
-	books[bookIndex].Sequence = r.FormValue("sequence")
-	books[bookIndex].Status = r.FormValue("status")
+	books[bookIndex].Genre[0] = cleanGenre(r.FormValue("genre1"))
+	books[bookIndex].Genre[1] = cleanGenre(r.FormValue("genre2"))
+	books[bookIndex].Series = strings.TrimSpace(r.FormValue("series"))
+	books[bookIndex].Sequence = strings.TrimSpace(r.FormValue("sequence"))
+	books[bookIndex].Status = strings.TrimSpace(r.FormValue("status"))
+	books[bookIndex].Notes = strings.TrimSpace(r.FormValue("notes"))
 	if len(books[bookIndex].Status) > 0 {
 		books[bookIndex].StatusIcon = string(books[bookIndex].Status[0]) // First character of status
 	}
-	books[bookIndex].Notes = r.FormValue("notes")
 
 	// Parse rating
 	ratingStr := r.FormValue("rating")
@@ -243,4 +264,39 @@ func (s *Server) SaveHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Redirect back to the home page
 	http.Redirect(w, r, "/#b_"+isbn, http.StatusSeeOther)
+}
+
+// capitalizeWords capitalizes the first letter of each word in a string
+func capitalizeWords(s string) string {
+	// List of words to preserve as-is
+	preserve := map[string]bool{
+		"SF": true,
+	}
+
+	words := strings.Fields(s)
+	for i, word := range words {
+		if len(word) > 0 {
+			if preserve[strings.ToUpper(word)] {
+				words[i] = word
+			} else {
+				words[i] = strings.ToUpper(string(word[0])) + strings.ToLower(word[1:])
+			}
+		}
+	}
+	return strings.Join(words, " ")
+}
+
+// cleanGenre removes non-alphanumeric characters from the start and end of a genre string
+func cleanGenre(genre string) string {
+	// First trim whitespace
+	genre = strings.TrimSpace(genre)
+	// Remove trailing non-alphanumeric characters
+	for len(genre) > 0 && !unicode.IsLetter(rune(genre[len(genre)-1])) && !unicode.IsNumber(rune(genre[len(genre)-1])) {
+		genre = genre[:len(genre)-1]
+	}
+	// Remove leading non-alphanumeric characters
+	for len(genre) > 0 && !unicode.IsLetter(rune(genre[0])) && !unicode.IsNumber(rune(genre[0])) {
+		genre = genre[1:]
+	}
+	return capitalizeWords(genre)
 }

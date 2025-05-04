@@ -49,13 +49,30 @@ func SaveFile(filename string, books []Book) error {
 		if books[i].AuthorSort == nil {
 			books[i].AuthorSort = []string{}
 		}
-		if books[i].Genre == nil {
-			books[i].Genre = []string{}
-		}
+		// Create new genre array of size 2 and copy up to 2 entries
+		oldGenres := books[i].Genre
+		books[i].Genre = make([]string, 2)
+		copy(books[i].Genre, oldGenres)
+
 		// If authors is empty but authorSort has values, copy them
 		if len(books[i].Authors) == 0 && len(books[i].AuthorSort) > 0 {
 			books[i].Authors = books[i].AuthorSort
 		}
+		// Ensure Genre array has exactly 2 entries
+		if len(books[i].Genre) < 2 {
+			// Pad with empty strings if needed
+			books[i].Genre = append(books[i].Genre, make([]string, 2-len(books[i].Genre))...)
+		} else if len(books[i].Genre) > 2 {
+			// Truncate to 2 entries
+			books[i].Genre = books[i].Genre[:2]
+		}
+
+		// Trim string fields
+		books[i].Title = strings.TrimSpace(books[i].Title)
+		books[i].Series = strings.TrimSpace(books[i].Series)
+		books[i].Sequence = strings.TrimSpace(books[i].Sequence)
+		books[i].Status = strings.TrimSpace(books[i].Status)
+		books[i].Notes = strings.TrimSpace(books[i].Notes)
 	}
 
 	// Save file

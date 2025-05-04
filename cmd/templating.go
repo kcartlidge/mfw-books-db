@@ -15,6 +15,7 @@ type TemplateData struct {
 	Content   interface{}
 	SortField string
 	Series    []string
+	Genres    []string
 }
 
 // Templates holds all our templates

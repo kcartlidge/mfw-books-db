@@ -24,8 +24,16 @@
         <label>Author Sort</label>
         <div><input type="text" name="authorSort" value="{{$book.GetAuthorSortForEdit}}" placeholder="Author Sort" required></div>
 
-        <label>Genres</label>
-        <div><input type="text" name="genres" value="{{$book.GetGenresForEdit}}" placeholder="Genres" required></div>
+        <label>Genres<br><span class="small" onclick="switchGenres()" style="cursor: pointer;">&lt;-&gt;</span></label>
+        <div>
+          <input type="text" name="genre1" value="{{index $book.Genre 0}}" placeholder="Genre 1" list="genre-list" class="medium">
+          <input type="text" name="genre2" value="{{index $book.Genre 1}}" placeholder="Genre 2" list="genre-list" class="medium">
+          <datalist id="genre-list">
+            {{range .Genres}}
+              <option value="{{.}}">
+            {{end}}
+          </datalist>
+        </div>
 
         <label>Series</label>
         <div>
@@ -106,6 +114,15 @@ document.addEventListener("keydown", function (e) {
     window.location.href = "/#b_" + isbn;
   }
 });
+
+function switchGenres() {
+  const genre1 = document.querySelector('input[name="genre1"]');
+  const genre2 = document.querySelector('input[name="genre2"]');
+  const temp = genre1.value;
+  genre1.value = genre2.value;
+  genre2.value = temp;
+  genre1.focus();
+}
 </script>
 
 {{template "base" .}}

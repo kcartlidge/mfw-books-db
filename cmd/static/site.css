@@ -413,6 +413,21 @@ h2 .small {
   opacity: 0.7;
 }
 
+.edit-form label .small {
+  display: inline-block;
+  background: #156fc9;
+  color: white;
+  padding: 0.1rem 0.25rem;
+  border: 0;
+  border-radius: 0.2rem;
+  margin: 0.1rem 0;
+  font-size: 0.9rem;
+}
+
+.edit-form label .small:hover {
+  background: #08f;
+}
+
 .edit-form div.prefilled {
   background: #fff;
   font-size: 1.1rem;
