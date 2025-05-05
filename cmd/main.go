@@ -43,11 +43,6 @@ func main() {
 	fmt.Printf("Found %d book(s) in the database\n", len(books))
 	fmt.Println()
 
-	// Create backup at launch
-	if err := createBackupFile(jsonFile); err != nil {
-		fmt.Printf("Error creating launch backup: %v\n", err)
-	}
-
 	// Clear errors if requested
 	if clearErrors {
 		fmt.Println("Clearing errored ISBNs so they are retried")
@@ -120,11 +115,6 @@ func main() {
 			check(err)
 		}
 		server.Start()
-	}
-
-	// Create backup at exit
-	if err := createBackupFile(jsonFile); err != nil {
-		fmt.Printf("Error creating exit backup: %v\n", err)
 	}
 
 	fmt.Println("Done.")

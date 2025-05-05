@@ -29,6 +29,7 @@ Working on a JSON (or any) file stored on some cloud syncing services can screw 
 
 - Book management website (deliberately simple and fast)
     - Maintains your collection in a readable/editable JSON format
+    - Auto-backups with one file per day that has changes
 - Automatic import from a text file of ISBNs
     - Fetches book metadata from Google Books
     - Skips ISBNs already successfully fetched previously
