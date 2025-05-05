@@ -7,7 +7,7 @@
   <table class="books">
     <thead>
       <tr class="header">
-        <th colspan="8"><span class="count">{{len .Content}}</span></th>
+        <th colspan="8"><span class="count">{{len .Content}}</span> <strong>{{.Title}}</strong></th>
       </tr>
       <tr>
         <th class="isbn" width="1%"><a href="/sort/isbn" {{if eq .SortField "isbn"}}class="current-sort"{{end}}>ISBN</a></th>

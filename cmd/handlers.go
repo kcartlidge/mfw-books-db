@@ -22,6 +22,30 @@ func (s *Server) HomeHandler(w http.ResponseWriter, r *http.Request) {
 	// Load the books from the JSON file
 	books := LoadFile(s.Filename)
 
+	// Default title and filter
+	title := "All Books"
+	var filter BookFilter
+
+	// Get the filter from cookie
+	filterName, err := s.CookieHandler.GetCookie(r, "mfw-filter")
+	if err == nil {
+		// Apply the appropriate filter
+		switch strings.ToLower(filterName) {
+		case "all":
+			filter = GetPopulatedAllBooksFilter(books)
+		case "reading":
+			filter = GetPopulatedReadingFilter(books)
+		case "next":
+			filter = GetPopulatedNextFilter(books)
+		case "done":
+			filter = GetPopulatedDoneFilter(books)
+		case "other":
+			filter = GetPopulatedOtherFilter(books)
+		}
+		books = filter.Books
+		title = filter.Name
+	}
+
 	// Get the sort field and direction from cookies
 	sortField, err := s.CookieHandler.GetCookie(r, "mfw-sort-details")
 	if err == nil {
@@ -49,7 +73,7 @@ func (s *Server) HomeHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Create the template data
 	data := TemplateData{
-		Title:     "All Books",
+		Title:     title,
 		Filename:  s.Filename,
 		Content:   books,
 		SortField: sortField,
@@ -99,6 +123,23 @@ func (s *Server) SortHandler(w http.ResponseWriter, r *http.Request) {
 	err = s.CookieHandler.SetCookie(w, "mfw-sort-direction", newSortDirection, 86400) // 24 hours
 	if err != nil {
 		http.Error(w, "Error setting sort direction cookie: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// Redirect back to the home page
+	http.Redirect(w, r, "/", http.StatusSeeOther)
+}
+
+// FilterHandler handles filter requests
+func (s *Server) FilterHandler(w http.ResponseWriter, r *http.Request) {
+	// Get the filter name from the URL
+	vars := mux.Vars(r)
+	filterName := vars["filter"]
+
+	// Set the filter cookie
+	err := s.CookieHandler.SetCookie(w, "mfw-filter", filterName, 86400) // 24 hours
+	if err != nil {
+		http.Error(w, "Error setting filter cookie: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
 
