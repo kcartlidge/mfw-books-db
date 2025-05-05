@@ -7,9 +7,8 @@
       "Camellia Panjabi"
     ],
     "genre": [
-      "Cooking, Regional \u0026 Ethnic",
-      "Cooking, Specific Ingredients",
-      "Cookery (Curry)"
+      "Food",
+      ""
     ],
     "link": "https://www.googleapis.com/books/v1/volumes/Z6Z4PgAACAAJ",
     "publishedDate": "2004-09",
@@ -22,10 +21,10 @@
     ],
     "series": "",
     "sequence": "",
-    "status": "Unread",
-    "rating": 0,
+    "status": "R - Read",
+    "rating": 5,
     "notes": "",
-    "statusIcon": "U",
+    "statusIcon": "R",
     "modifiedUtc": "2025-04-30T23:17:17Z",
     "isException": false,
     "exceptionReason": ""
@@ -38,7 +37,8 @@
       "Julian May"
     ],
     "genre": [
-      "Fantasy fiction"
+      "Science Fiction",
+      ""
     ],
     "link": "https://www.googleapis.com/books/v1/volumes/a2V7GwAACAAJ",
     "publishedDate": "1984",
@@ -49,12 +49,12 @@
     "authorSort": [
       "May, Julian"
     ],
-    "series": "",
-    "sequence": "",
-    "status": "Unread",
+    "series": "Saga of the Exiles",
+    "sequence": "4",
+    "status": "R - Read",
     "rating": 3,
     "notes": "",
-    "statusIcon": "U",
+    "statusIcon": "R",
     "modifiedUtc": "2025-04-30T23:17:17Z",
     "isException": false,
     "exceptionReason": ""
@@ -67,15 +67,8 @@
       "桜坂洋"
     ],
     "genre": [
-      "Comics \u0026 Graphic Novels, Media Tie-In",
-      "Comics \u0026 Graphic Novels, Science Fiction",
-      "Comics \u0026 Graphic Novels, Manga",
-      "Fiction, Action \u0026 Adventure",
-      "Fiction, Fantasy",
-      "Fiction, Media Tie-In",
-      "Fiction, Science Fiction",
-      "COMICS \u0026 GRAPHIC NOVELS, Manga",
-      "Comics \u0026 Graphic Novels"
+      "Science Fiction",
+      "Military SF"
     ],
     "link": "https://www.googleapis.com/books/v1/volumes/fkoktq5j_9AC",
     "publishedDate": "2009-07-21",
@@ -84,14 +77,14 @@
     "language": "en",
     "description": "SCIENCE FICTION. When the alien Gitai invade, Keiji Kiriya is just one of many raw recruits shoved into a suit of battle armour and sent out to kill. Keiji dies on the battlefield, only to find himself reborn each morning to fight and die again and again. On the 158th iteration though, he sees something different, something out of place: the female soldier known as the Bitch of War. Is the Bitch the key to Keiji's escape, or to his final death?",
     "authorSort": [
-      "桜坂洋"
+      "Sakurazaka, Hiroshi"
     ],
     "series": "",
     "sequence": "",
-    "status": "Unread",
-    "rating": 5,
+    "status": "R - Read",
+    "rating": 4,
     "notes": "",
-    "statusIcon": "U",
+    "statusIcon": "R",
     "modifiedUtc": "2025-04-30T23:17:19Z",
     "isException": false,
     "exceptionReason": ""
@@ -104,9 +97,8 @@
       "Paul McAuley"
     ],
     "genre": [
-      "Fiction, General",
-      "Fiction, Science Fiction",
-      "Bears"
+      "Science Fiction",
+      ""
     ],
     "link": "https://www.googleapis.com/books/v1/volumes/sdxwzwEACAAJ",
     "publishedDate": "2023-09-28",
@@ -119,36 +111,13 @@
     ],
     "series": "",
     "sequence": "",
-    "status": "Unread",
+    "status": "U - Unread",
     "rating": 0,
     "notes": "",
     "statusIcon": "U",
     "modifiedUtc": "2025-04-30T23:17:20Z",
     "isException": false,
     "exceptionReason": ""
-  },
-  {
-    "id": "",
-    "isbn": "9780007129706",
-    "title": "",
-    "authors": null,
-    "genre": null,
-    "link": "",
-    "publishedDate": "",
-    "publisher": "",
-    "pageCount": 0,
-    "language": "",
-    "description": "",
-    "authorSort": null,
-    "series": "",
-    "sequence": "",
-    "status": "",
-    "rating": 0,
-    "notes": "",
-    "statusIcon": "",
-    "modifiedUtc": "2025-04-30T23:17:20Z",
-    "isException": true,
-    "exceptionReason": "no book found"
   },
   {
     "id": "OHOnuQAACAAJ",
@@ -158,8 +127,8 @@
       "Karen Traviss"
     ],
     "genre": [
-      "Fiction, Science Fiction",
-      "Imaginary wars and battles"
+      "Science Fiction",
+      "Military SF"
     ],
     "link": "https://www.googleapis.com/books/v1/volumes/OHOnuQAACAAJ",
     "publishedDate": "2011",
@@ -170,12 +139,12 @@
     "authorSort": [
       "Traviss, Karen"
     ],
-    "series": "",
-    "sequence": "",
-    "status": "Unread",
-    "rating": 0,
+    "series": "Gears of War",
+    "sequence": "4",
+    "status": "A - Abandoned",
+    "rating": 2,
     "notes": "",
-    "statusIcon": "U",
+    "statusIcon": "A",
     "modifiedUtc": "2025-04-30T23:17:21Z",
     "isException": false,
     "exceptionReason": ""
@@ -188,10 +157,8 @@
       "Anna Smith Spark"
     ],
     "genre": [
-      "Fiction, Fantasy",
-      "Fiction, Religious",
-      "Fiction, Thrillers",
-      "Courts and courtiers"
+      "Fantasy",
+      ""
     ],
     "link": "https://www.googleapis.com/books/v1/volumes/LtHvAQAACAAJ",
     "publishedDate": "2018-02-08",
@@ -202,9 +169,9 @@
     "authorSort": [
       "Spark, Anna Smith"
     ],
-    "series": "",
-    "sequence": "",
-    "status": "Unread",
+    "series": "Empires of Dust",
+    "sequence": "1",
+    "status": "U - Unread",
     "rating": 0,
     "notes": "",
     "statusIcon": "U",
@@ -213,38 +180,122 @@
     "exceptionReason": ""
   },
   {
-    "id": "8G34nAEACAAJ",
-    "isbn": "9780241956304",
-    "title": "Trouble is My Business",
+    "id": "ld-7f2YXxHwC",
+    "isbn": "9780552145800",
+    "title": "Dance of the Voodoo Handbag, the",
     "authors": [
-      "Raymond Chandler",
-      "Karin Slaughter"
+      "Robert Rankin"
     ],
     "genre": [
-      "Fiction, Mystery \u0026 Detective",
-      "Fiction, Short Stories (single author)",
-      "Fiction, Thrillers",
-      "Fiction, Crime",
-      "Fiction, City Life",
-      "Fiction"
+      "Fantasy",
+      "Humour"
     ],
-    "link": "https://www.googleapis.com/books/v1/volumes/8G34nAEACAAJ",
-    "publishedDate": "2013",
-    "publisher": "Penguin Books",
-    "pageCount": 288,
+    "link": "https://www.googleapis.com/books/v1/volumes/ld-7f2YXxHwC",
+    "publishedDate": "1999",
+    "publisher": "Random House",
+    "pageCount": 335,
     "language": "en",
-    "description": "In 'Trouble is My Business', Philip Marlowe's forerunner, private eye John Dalmas, gets to stand between a gambler and a rich man. The play-off is drinking good Scotch with Harriet Huntress - the woman giving each of them grief.",
+    "description": "Originally published: London: Doubleday, 1998.",
     "authorSort": [
-      "Chandler, Raymond",
-      "Slaughter, Karin"
+      "Rankin, Robert"
     ],
     "series": "",
     "sequence": "",
-    "status": "Unread",
-    "rating": 0,
+    "status": "R - Read",
+    "rating": 4,
     "notes": "",
-    "statusIcon": "U",
-    "modifiedUtc": "2025-04-30T23:17:23Z",
+    "statusIcon": "R",
+    "modifiedUtc": "2025-05-01T18:16:18Z",
+    "isException": false,
+    "exceptionReason": ""
+  },
+  {
+    "id": "LI0OAAAACAAJ",
+    "isbn": "9780552148979",
+    "title": "Fandom of the Operator, the",
+    "authors": [
+      "Robert Rankin"
+    ],
+    "genre": [
+      "Fantasy",
+      "Humour"
+    ],
+    "link": "https://www.googleapis.com/books/v1/volumes/LI0OAAAACAAJ",
+    "publishedDate": "2002",
+    "publisher": "Corgi",
+    "pageCount": 366,
+    "language": "en",
+    "description": "Gary Cheese is 19 and works for British Telecom as an operator. His hobbies include watching TV, walking his dog, going down to the pub, and attempting to re-animate the dead.",
+    "authorSort": [
+      "Rankin, Robert"
+    ],
+    "series": "",
+    "sequence": "",
+    "status": "R - Read",
+    "rating": 4,
+    "notes": "",
+    "statusIcon": "R",
+    "modifiedUtc": "2025-05-01T18:16:19Z",
+    "isException": false,
+    "exceptionReason": ""
+  },
+  {
+    "id": "",
+    "isbn": "9780007129706",
+    "title": "Fellowship of the Ring, the",
+    "authors": [
+      "JRR Tolkien."
+    ],
+    "genre": [
+      "Fantasy",
+      "Epic Fantasy"
+    ],
+    "link": "",
+    "publishedDate": "",
+    "publisher": "",
+    "pageCount": 0,
+    "language": "",
+    "description": "",
+    "authorSort": [
+      "Tolkien, JRR"
+    ],
+    "series": "Lord of the Rings",
+    "sequence": "1",
+    "status": "R - Read",
+    "rating": 4,
+    "notes": "Not found by Google Books API search, so updated manually.",
+    "statusIcon": "R",
+    "modifiedUtc": "2025-04-30T23:17:20Z",
+    "isException": false,
+    "exceptionReason": ""
+  },
+  {
+    "id": "",
+    "isbn": "9780006754022",
+    "title": "Hobbit, the",
+    "authors": [
+      "JRR Tolkien."
+    ],
+    "genre": [
+      "Fantasy",
+      "Young Adult"
+    ],
+    "link": "",
+    "publishedDate": "",
+    "publisher": "",
+    "pageCount": 0,
+    "language": "",
+    "description": "",
+    "authorSort": [
+      "Tolkien, JRR"
+    ],
+    "series": "",
+    "sequence": "",
+    "status": "R - Read",
+    "rating": 5,
+    "notes": "Not found by Google Books API search, so updated manually.",
+    "statusIcon": "R",
+    "modifiedUtc": "2025-04-30T23:17:24Z",
     "isException": false,
     "exceptionReason": ""
   },
@@ -256,11 +307,8 @@
       "Jim Butcher"
     ],
     "genre": [
-      "Fiction, Fantasy",
-      "Fiction, Mystery \u0026 Detective",
-      "Fiction, Occult \u0026 Supernatural",
-      "Fiction, City Life",
-      "Dresden, Harry (Fictitious character)"
+      "Fantasy",
+      "Paranormal"
     ],
     "link": "https://www.googleapis.com/books/v1/volumes/LL-9cQAACAAJ",
     "publishedDate": "2011",
@@ -273,36 +321,13 @@
     ],
     "series": "Dresden Files",
     "sequence": "1",
-    "status": "Unread",
+    "status": "R - Read",
     "rating": 4,
     "notes": "",
-    "statusIcon": "U",
+    "statusIcon": "R",
     "modifiedUtc": "2025-04-30T23:17:24Z",
     "isException": false,
     "exceptionReason": ""
-  },
-  {
-    "id": "",
-    "isbn": "9780006754022",
-    "title": "",
-    "authors": null,
-    "genre": null,
-    "link": "",
-    "publishedDate": "",
-    "publisher": "",
-    "pageCount": 0,
-    "language": "",
-    "description": "",
-    "authorSort": null,
-    "series": "",
-    "sequence": "",
-    "status": "",
-    "rating": 0,
-    "notes": "",
-    "statusIcon": "",
-    "modifiedUtc": "2025-04-30T23:17:24Z",
-    "isException": true,
-    "exceptionReason": "no book found"
   },
   {
     "id": "I1aacQAACAAJ",
@@ -312,11 +337,8 @@
       "Jim Butcher"
     ],
     "genre": [
-      "Fiction, Fantasy",
-      "Fiction, Mystery \u0026 Detective",
-      "Fiction, Occult \u0026 Supernatural",
-      "Fiction, City Life",
-      "Chicago (Ill.)"
+      "Fantasy",
+      "Paranormal"
     ],
     "link": "https://www.googleapis.com/books/v1/volumes/I1aacQAACAAJ",
     "publishedDate": "2011",
@@ -327,9 +349,9 @@
     "authorSort": [
       "Butcher, Jim"
     ],
-    "series": "",
-    "sequence": "",
-    "status": "Unread",
+    "series": "Dresden Files",
+    "sequence": "4",
+    "status": "U - Unread",
     "rating": 0,
     "notes": "",
     "statusIcon": "U",
@@ -345,8 +367,8 @@
       "Gordon R. Dickson"
     ],
     "genre": [
-      "Fiction, Science Fiction",
-      "English fiction"
+      "Science Fiction",
+      "Military SF"
     ],
     "link": "https://www.googleapis.com/books/v1/volumes/5YiXJAAACAAJ",
     "publishedDate": "1976",
@@ -357,9 +379,9 @@
     "authorSort": [
       "Dickson, Gordon R"
     ],
-    "series": "",
-    "sequence": "",
-    "status": "Unread",
+    "series": "Dorsai",
+    "sequence": "1",
+    "status": "U - Unread",
     "rating": 0,
     "notes": "",
     "statusIcon": "U",
@@ -376,9 +398,8 @@
       "Daniel Gross"
     ],
     "genre": [
-      "Business \u0026 Economics, General",
-      "Business \u0026 Economics, Leadership",
-      "Business \u0026 Economics, Commerce"
+      "Business",
+      ""
     ],
     "link": "https://www.googleapis.com/books/v1/volumes/2mGKzgEACAAJ",
     "publishedDate": "2022-05-12",
@@ -392,7 +413,7 @@
     ],
     "series": "",
     "sequence": "",
-    "status": "Unread",
+    "status": "U - Unread",
     "rating": 0,
     "notes": "",
     "statusIcon": "U",
@@ -401,65 +422,34 @@
     "exceptionReason": ""
   },
   {
-    "id": "ld-7f2YXxHwC",
-    "isbn": "9780552145800",
-    "title": "Dance of the Voodoo Handbag, the",
+    "id": "8G34nAEACAAJ",
+    "isbn": "9780241956304",
+    "title": "Trouble is My Business",
     "authors": [
-      "Robert Rankin"
+      "Raymond Chandler",
+      "Karin Slaughter"
     ],
     "genre": [
-      "Fiction, Fantasy",
-      "Fiction, Science Fiction",
-      "Humor, General",
-      "Fiction"
+      "Fiction",
+      "Detective"
     ],
-    "link": "https://www.googleapis.com/books/v1/volumes/ld-7f2YXxHwC",
-    "publishedDate": "1999",
-    "publisher": "Random House",
-    "pageCount": 335,
+    "link": "https://www.googleapis.com/books/v1/volumes/8G34nAEACAAJ",
+    "publishedDate": "2013",
+    "publisher": "Penguin Books",
+    "pageCount": 288,
     "language": "en",
-    "description": "Originally published: London: Doubleday, 1998.",
+    "description": "In 'Trouble is My Business', Philip Marlowe's forerunner, private eye John Dalmas, gets to stand between a gambler and a rich man. The play-off is drinking good Scotch with Harriet Huntress - the woman giving each of them grief.",
     "authorSort": [
-      "Rankin, Robert"
+      "Chandler, Raymond",
+      "Slaughter, Karin"
     ],
-    "series": "",
-    "sequence": "",
-    "status": "Unread",
+    "series": "Philip Marlowe",
+    "sequence": "8",
+    "status": "U - Unread",
     "rating": 0,
     "notes": "",
     "statusIcon": "U",
-    "modifiedUtc": "2025-05-01T18:16:18Z",
-    "isException": false,
-    "exceptionReason": ""
-  },
-  {
-    "id": "LI0OAAAACAAJ",
-    "isbn": "9780552148979",
-    "title": "Fandom of the Operator, the",
-    "authors": [
-      "Robert Rankin"
-    ],
-    "genre": [
-      "Fiction, General",
-      "Fiction, Fantasy",
-      "Humorous stories"
-    ],
-    "link": "https://www.googleapis.com/books/v1/volumes/LI0OAAAACAAJ",
-    "publishedDate": "2002",
-    "publisher": "Corgi",
-    "pageCount": 366,
-    "language": "en",
-    "description": "Gary Cheese is 19 and works for British Telecom as an operator. His hobbies include watching TV, walking his dog, going down to the pub, and attempting to re-animate the dead.",
-    "authorSort": [
-      "Rankin, Robert"
-    ],
-    "series": "",
-    "sequence": "",
-    "status": "Unread",
-    "rating": 0,
-    "notes": "",
-    "statusIcon": "U",
-    "modifiedUtc": "2025-05-01T18:16:19Z",
+    "modifiedUtc": "2025-04-30T23:17:23Z",
     "isException": false,
     "exceptionReason": ""
   }

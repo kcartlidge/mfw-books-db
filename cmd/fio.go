@@ -26,11 +26,16 @@ func LoadFile(filename string) []Book {
 		check(err)
 	}
 
-	// Validate ratings
+	// Validate ratings and ensure Genre array has exactly 2 elements
 	for i := range books {
 		if books[i].Rating < 0 || books[i].Rating > 5 {
 			books[i].Rating = 0
 		}
+		// Ensure Genre array has exactly 2 entries
+		if books[i].Genre == nil {
+			books[i].Genre = []string{"", ""}
+		}
+		books[i].Genre = append(books[i].Genre, "", "")[:2]
 	}
 
 	return books
