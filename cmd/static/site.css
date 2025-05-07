@@ -142,10 +142,19 @@ table.books thead tr.header th .count {
   color: #fff;
   padding: 0.25rem 0.5rem;
   border-radius: 0.75rem;
+  margin-right: 0.25rem;
+}
+
+table.books thead tr.header th strong {
+  font-weight: normal;
 }
 
 table.books thead tr:last-child {
   border-bottom: 2px solid #555;
+}
+
+table.books tbody tr td {
+  background-color: #fdfdfd;
 }
 
 table.books tbody tr:nth-child(even) td {
@@ -497,5 +506,154 @@ p.exception {
   margin: 0;
   padding: 0;
   font-size: 1.5rem;
+}
+
+/* Print styles */
+@media print {
+  body {
+    font-size: 10pt;
+  }
+
+  /* Make all links look like normal text */
+  a,
+  a:visited,
+  a:link,
+  a:active,
+  a:hover {
+    color: #000;
+    text-decoration: none;
+    border: none;
+  }
+
+  table.books td.link,
+  table.books th.link {
+    display: none;
+  }
+
+  nav {
+    display: none;
+  }
+
+  table.books {
+    border-collapse: collapse;
+  }
+
+  /* Hide existing vertical borders on data cells */
+  table.books td {
+    border: none;
+  }
+
+  /* Extra spacing between header and table */
+  table.books thead tr.header th {
+    padding-bottom: 2rem;
+  }
+
+  /* Style count in print mode */
+  table.books thead tr.header th .count {
+    background: none;
+    color: #000;
+    padding: 0;
+  }
+
+  /* Only show bottom border on column headers */
+  table.books thead tr:last-child th {
+    border-top: none;
+    border-bottom: 1px solid #777;
+    background: none;
+    color: #000;
+    padding: 0.4rem 1rem;
+    font-weight: bold;
+  }
+
+  table.books th, table.books th a, table.books th a:hover,
+  table.books td, table.books td a, table.books td a:hover,
+  table.books a, table.books a:hover {
+    background: #ffffff !important;
+    color: #000 !important;
+  }
+
+  table.books tbody tr:nth-child(even) td,
+  table.books tbody tr:nth-child(even) td:hover,
+  table.books tbody tr:nth-child(even) td a,
+  table.books tbody tr:nth-child(even) td a:hover {
+    background: #f7f7f7 !important;
+    color: #000 !important;
+  }
+
+  /* Remove hover effect in print */
+  table.books tbody tr:hover td {
+    background-color: inherit;
+    animation: none;
+  }
+
+  table.books tr {
+    page-break-inside: avoid;
+  }
+
+  table.books tbody tr:nth-child(even) td {
+    background-color: #f3f3f3;
+  }
+
+  .status-icon-U, .status-icon-C, .status-icon-N, .status-icon-R,
+  .status-icon-A, .status-icon-X, .status-icon-L, .status-icon-G {
+    background: transparent !important;
+  }
+
+  .star.filled {
+    color: #000;
+  }
+
+  /* Remove form styling in print mode */
+  .form-frame {
+    background: none;
+    box-shadow: none;
+    padding: 0 3rem 0 0;
+    margin: 0;
+  }
+
+  /* Hide the text that follows the ISBN in edit form */
+  h2 .small {
+    display: none;
+  }
+
+  /* Hide buttons in print mode */
+  .edit-form button,
+  .edit-form a.cancel,
+  .edit-form label .small {
+    display: none;
+  }
+
+  /* Style form fields in print mode */
+  .edit-form input,
+  .edit-form textarea,
+  .edit-form select,
+  .edit-form div.prefilled {
+    border: 1px solid #777;
+    background: none;
+    padding: 0.4rem 1rem;
+  }
+
+  /* Hide select dropdown arrow in print mode */
+  .edit-form select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  /* Make textareas auto-height in print mode */
+  .edit-form textarea {
+    height: auto;
+    min-height: 0;
+  }
+
+  .edit-form textarea.tall {
+    min-height: 0;
+  }
+
+  /* Hide placeholders in print mode */
+  .edit-form input::placeholder,
+  .edit-form textarea::placeholder {
+    opacity: 0.3;
+  }
 }
 

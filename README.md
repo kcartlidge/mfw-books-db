@@ -6,7 +6,13 @@ A Go tool that fetches book information from Google Books and provides a website
 
 ISBNs can be scanned in via mobile apps like [Alfa ISBN Scanner](https://www.alfaebooks.com/help/isbn_scanner) which lets you gather ISBNs then share them to an email as a text file suitable for input here.
 
+*Screenshot:*
+
 ![screenshot](./screenshot.png)
+
+*Example Printing:*
+
+![printing](./printing.png)
 
 ---
 
