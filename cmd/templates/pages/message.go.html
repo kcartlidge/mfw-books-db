@@ -1,0 +1,14 @@
+{{define "message"}}
+{{template "top" .}}
+
+<div class="message-page">
+  <h2>{{.Title}}</h2>
+  <p>{{.Message}}</p>
+  <div class="message-buttons">
+    <a href="/add" class="edit-form button">Add Book</a>
+    <a href="/" class="edit-form cancel">Return to Books</a>
+  </div>
+</div>
+
+{{template "base" .}}
+{{end}}

@@ -21,6 +21,8 @@
     <div class="filename">{{.Filename}}</div>
   </header>
   <nav>
+    <a href="/add" {{if eq .Title "Add Book"}}class="current-filter"{{end}}>Add</a>
+    <span class="nav-separator">|</span>
     <a href="/filter/all" {{if or (eq .Title "All Books") (not .Title)}}class="current-filter"{{end}}>All Books</a>
     <a href="/filter/reading" {{if eq .Title "Reading"}}class="current-filter"{{end}}>Reading</a>
     <a href="/filter/next" {{if eq .Title "Next"}}class="current-filter"{{end}}>Next</a>

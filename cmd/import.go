@@ -21,38 +21,22 @@ func ProcessISBNs(isbns []string, books []Book, errorsCleared bool, singleHit bo
 		if i%5 == 0 {
 			fmt.Printf(" %d", i)
 		}
-		// Check if we already have this book
-		found := false
-		for _, book := range books {
-			if book.ISBN == isbn {
-				grid.AddRow(
-					isbn,
-					"-",
-					book.Title,
-					book.GetAuthorSortDisplay(),
-					book.ExceptionReason,
-				)
-				matchedCount++
-				found = true
-				break
-			}
-		}
+
+		// Look up the book
+		book, found, err := lookupBook(isbn, books, singleHit)
 		if found {
+			grid.AddRow(
+				isbn,
+				"-",
+				book.Title,
+				book.GetAuthorSortDisplay(),
+				book.ExceptionReason,
+			)
+			matchedCount++
 			continue
 		}
 
-		// Get the book from Google Books
-		gb, err := GetBookByISBN(isbn, singleHit)
 		if err != nil {
-			// Create a book with just the ISBN and error information
-			book := Book{
-				ID:              "",
-				ISBN:            isbn,
-				IsException:     true,
-				ExceptionReason: err.Error(),
-				ModifiedUtc:     time.Now().UTC().Format(time.RFC3339),
-			}
-			books = append(books, book)
 			grid.AddRow(
 				isbn,
 				"Error",
@@ -61,22 +45,17 @@ func ProcessISBNs(isbns []string, books []Book, errorsCleared bool, singleHit bo
 				err.Error(),
 			)
 			errorCount++ // Only count new errors
-			continue
+		} else {
+			grid.AddRow(
+				isbn,
+				"Yes",
+				book.Title,
+				book.GetAuthorSortDisplay(),
+				"",
+			)
+			newCount++
 		}
-
-		// Map to our Book model
-		book := mapGoogleBook(isbn, gb)
-
-		// Add to the grid and the books slice
-		grid.AddRow(
-			isbn,
-			"Yes",
-			book.Title,
-			book.GetAuthorSortDisplay(),
-			"",
-		)
 		books = append(books, book)
-		newCount++
 	}
 	if len(isbns)%5 != 0 {
 		fmt.Printf(" %d", len(isbns))
@@ -100,6 +79,34 @@ func ProcessISBNs(isbns []string, books []Book, errorsCleared bool, singleHit bo
 	fmt.Println()
 
 	return books
+}
+
+// lookupBook checks if a book exists and if not, looks it up in Google Books
+func lookupBook(isbn string, books []Book, singleHit bool) (Book, bool, error) {
+	// Check if we already have this book
+	for _, book := range books {
+		if book.ISBN == isbn {
+			return book, true, nil
+		}
+	}
+
+	// Get the book from Google Books
+	gb, err := GetBookByISBN(isbn, singleHit)
+	if err != nil {
+		// Create a book with just the ISBN and error information
+		book := Book{
+			ID:              "",
+			ISBN:            isbn,
+			IsException:     true,
+			ExceptionReason: err.Error(),
+			ModifiedUtc:     time.Now().UTC().Format(time.RFC3339),
+		}
+		return book, false, err
+	}
+
+	// Map to our Book model
+	book := mapGoogleBook(isbn, gb)
+	return book, false, nil
 }
 
 // mapGoogleBook converts a GoogleBook to our Book model

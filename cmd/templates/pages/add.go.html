@@ -1,0 +1,53 @@
+{{define "add"}}
+{{template "top" .}}
+
+<div class="form-frame">
+  <form class="edit-form" method="POST" action="/books/search">
+    <label>ISBN</label>
+    <div><input type="text" name="isbn" placeholder="ISBN" required autofocus></div>
+
+    <label>&nbsp;</label>
+    <div>
+      <button type="submit">Search</button>
+      <a href="/" class="cancel">Cancel</a>
+    </div>
+  </form>
+</div>
+
+<div class="bulk-import-info">
+  <p>To import a list of ISBNs in bulk:</p>
+  <ul>
+    <li>Create a plain text file named <code>isbns.txt</code> next to your books file</li>
+    <li>Add ISBNs to that file (one per line, usually 10 or 13 digits)</li>
+    <li>Restart MFW Books Database and it will import them
+      <ul>
+        <li>If they already exist, they will be skipped</li>
+        <li>New books are added from a Google Books API search</li>
+        <li>If the search fails, the ISBN is added without details</li>
+      </ul>
+    </li>
+    <li>After import, remove or update <code>isbns.txt</code> as needed</li>
+    <li>ISBNs that failed can be removed manually from the JSON file
+      <ul>
+        <li>Edit the file in a plain text editor to remove the book</li>
+        <li>Refresh the page to see the changes instantly</li>
+      </ul>
+    </li>
+  </ul>
+  <p>
+    Failed searches are added to avoid repeating them every time you restart the application.
+    If you want to remove failed searches, run with the <code>--clear-errors</code> flag.
+  </p>
+</div>
+
+<script>
+// If the user presses the Escape key, go back to the index page
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") {
+    window.location.href = "/";
+  }
+});
+</script>
+
+{{template "base" .}}
+{{end}}

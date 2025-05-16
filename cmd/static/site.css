@@ -482,8 +482,8 @@ h2 .small {
   background: #d96354;
 }
 
-.edit-form a.cancel {
-  background: #b94334;
+.edit-form a,
+.message-buttons a {
   color: #fff;
   font-size: 1.1rem;
   cursor: pointer;
@@ -495,11 +495,23 @@ h2 .small {
   margin: 0.25rem 0.1rem;
   text-decoration: none;
   vertical-align: top;
+  background: #439954;
 }
 
-.edit-form a.cancel:hover {
-  background: #d96354;
+.edit-form a:hover,
+.message-buttons a:hover {
   text-decoration: none;
+  background: #63b974;
+}
+
+.edit-form a.cancel,
+.message-buttons a.cancel {
+  background: #b94334;
+}
+
+.edit-form a.cancel:hover,
+.message-buttons a.cancel:hover {
+  background: #d96354;
 }
 
 p.exception {
@@ -656,4 +668,50 @@ p.exception {
     opacity: 0.3;
   }
 }
+
+code {
+  white-space: nowrap;
+  background-color: white;
+  padding: 0.1rem 0.25rem;
+  border: 1px solid #000;
+}
+
+.nav-separator {
+  color: #000;
+  margin: 0 0.5rem;
+}
+
+.bulk-import-info {
+  font-size: 0.8rem;
+  margin-top: 2rem;
+  display: inline-block;
+  padding: 1rem;
+  border: 2px solid #888;
+  border-radius: 1rem;
+  min-width: 20rem;
+  max-width: 40rem;
+  margin-bottom: 2rem;
+}
+
+.bulk-import-info p {
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+
+.bulk-import-info ul {
+  margin: 0;
+  padding: 1rem 0 1.5rem 1rem;
+}
+
+.bulk-import-info li ul {
+  margin: 0;
+  padding: 0 0 0 1rem;
+}
+
+.bulk-import-info li {
+  margin: 0.5rem 0 0 0;
+  padding: 0;
+}
+
 

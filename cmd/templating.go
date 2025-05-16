@@ -16,6 +16,7 @@ type TemplateData struct {
 	SortField string
 	Series    []string
 	Genres    []string
+	Message   template.HTML
 }
 
 // Templates holds all our templates

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"html/template"
 	"net/http"
 	"strconv"
 	"strings"
@@ -340,4 +341,112 @@ func cleanGenre(genre string) string {
 		genre = genre[1:]
 	}
 	return capitalizeWords(genre)
+}
+
+// AddHandler handles the add book page
+func (s *Server) AddHandler(w http.ResponseWriter, r *http.Request) {
+	// Create a new template manager
+	templates, err := NewTemplates()
+	if err != nil {
+		http.Error(w, "Error loading templates: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	data := TemplateData{
+		Title:    "Add Book",
+		Filename: s.Filename,
+	}
+
+	// Render the template
+	if err := templates.Render(w, "add", data); err != nil {
+		http.Error(w, "Error rendering template: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+}
+
+// MessageHandler displays a message page
+func (s *Server) MessageHandler(w http.ResponseWriter, r *http.Request) {
+	// Get the status from the URL
+	vars := mux.Vars(r)
+	status := vars["status"]
+	isbn := r.URL.Query().Get("isbn")
+
+	// Map status to title and message
+	var title, message string
+	switch status {
+	case "exists":
+		title = "Book Exists"
+		message = "is already in your collection"
+	case "not-found":
+		title = "Book Not Found"
+		message = "could not be found in Google Books"
+	default:
+		http.Error(w, "Invalid message status", http.StatusBadRequest)
+		return
+	}
+
+	// Format the message with the ISBN
+	formattedMessage := fmt.Sprintf("The book with ISBN <code>%s</code> %s.", isbn, message)
+
+	// Create a new template manager
+	templates, err := NewTemplates()
+	if err != nil {
+		http.Error(w, "Error loading templates: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	data := TemplateData{
+		Title:    title,
+		Filename: s.Filename,
+		Message:  template.HTML(formattedMessage),
+	}
+
+	// Render the template
+	if err := templates.Render(w, "message", data); err != nil {
+		http.Error(w, "Error rendering template: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+}
+
+// SearchHandler handles the ISBN search form submission
+func (s *Server) SearchHandler(w http.ResponseWriter, r *http.Request) {
+	// Parse the form data
+	if err := r.ParseForm(); err != nil {
+		http.Error(w, "Error parsing form: "+err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	// Get the ISBN from the form
+	isbn := r.FormValue("isbn")
+	if isbn == "" {
+		http.Error(w, "ISBN is required", http.StatusBadRequest)
+		return
+	}
+
+	// Load the books from the JSON file
+	books := LoadFile(s.Filename)
+
+	// Look up the book
+	book, found, err := lookupBook(isbn, books, false) // Use double-hit mode for better data
+	if found {
+		// Book already exists, show message
+		http.Redirect(w, r, fmt.Sprintf("/message/exists?isbn=%s", isbn), http.StatusSeeOther)
+		return
+	}
+
+	if err != nil {
+		// Book not found, show message
+		http.Redirect(w, r, fmt.Sprintf("/message/not-found?isbn=%s", isbn), http.StatusSeeOther)
+		return
+	}
+
+	// Add the new book to the database
+	books = append(books, book)
+	if err := SaveFile(s.Filename, books); err != nil {
+		http.Error(w, "Error saving file: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// Redirect to the edit page for the new book
+	http.Redirect(w, r, fmt.Sprintf("/books/edit/%s", isbn), http.StatusSeeOther)
 }

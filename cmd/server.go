@@ -44,6 +44,9 @@ func NewServer(port int, filename string) (*Server, error) {
 
 	// Add handlers
 	s.Router.HandleFunc("/", s.HomeHandler).Methods("GET")
+	s.Router.HandleFunc("/add", s.AddHandler).Methods("GET")
+	s.Router.HandleFunc("/books/search", s.SearchHandler).Methods("POST")
+	s.Router.HandleFunc("/message/{status}", s.MessageHandler).Methods("GET")
 	s.Router.HandleFunc("/sort/{field}", s.SortHandler).Methods("GET")
 	s.Router.HandleFunc("/filter/{filter}", s.FilterHandler).Methods("GET")
 	s.Router.HandleFunc("/books/edit/{isbn}", s.EditHandler).Methods("GET")
