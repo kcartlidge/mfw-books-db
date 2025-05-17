@@ -56,3 +56,5 @@ vendor/
 
 # Backup book files
 example/backups/*
+
+!mfw-books-db.exe
