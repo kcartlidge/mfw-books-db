@@ -22,7 +22,7 @@ type Server struct {
 }
 
 // NewServer creates a new server
-func NewServer(port int, filename string) (*Server, error) {
+func NewServer(port int, filename string, altCookies bool) (*Server, error) {
 	// Initialize templates
 	_, err := NewTemplates()
 	if err != nil {
@@ -30,7 +30,7 @@ func NewServer(port int, filename string) (*Server, error) {
 	}
 
 	// Initialize cookie handler
-	cookieHandler, err := NewCookieHandler()
+	cookieHandler, err := NewCookieHandler(altCookies)
 	if err != nil {
 		return nil, fmt.Errorf("error initializing cookie handler: %w", err)
 	}
@@ -73,6 +73,19 @@ func (s *Server) Start() {
 
 	// Start the server
 	go func() {
+		fmt.Println()
+		fmt.Println()
+		fmt.Println("IMPORTANT")
+		fmt.Println("MFW Books DB runs as a website on your machine.")
+		fmt.Println("To access it, open a browser and go to:")
+		fmt.Println("  http://localhost" + srv.Addr)
+		fmt.Println()
+		fmt.Println()
+		fmt.Println("On some browsers (eg Safari on a Mac) you may need to")
+		fmt.Println("switch to insecure cookies by adding --alt-cookies")
+		fmt.Println("You'll know if this is needed because the sorting and")
+		fmt.Println("filter navigation will not work.")
+		fmt.Println()
 		fmt.Println()
 		log.Printf("Server starting on %s", srv.Addr)
 		serverErrors <- srv.ListenAndServe()

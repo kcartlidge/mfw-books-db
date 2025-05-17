@@ -9,11 +9,12 @@ import (
 
 // CookieHandler handles cookie operations
 type CookieHandler struct {
-	sc *securecookie.SecureCookie
+	sc         *securecookie.SecureCookie
+	altCookies bool
 }
 
 // NewCookieHandler creates a new cookie handler
-func NewCookieHandler() (*CookieHandler, error) {
+func NewCookieHandler(altCookies bool) (*CookieHandler, error) {
 	// Generate a random hash key for cookie encryption
 	hashKey := securecookie.GenerateRandomKey(32)
 	if hashKey == nil {
@@ -27,7 +28,8 @@ func NewCookieHandler() (*CookieHandler, error) {
 	}
 
 	return &CookieHandler{
-		sc: securecookie.New(hashKey, blockKey),
+		sc:         securecookie.New(hashKey, blockKey),
+		altCookies: altCookies,
 	}, nil
 }
 
@@ -50,13 +52,14 @@ func (ch *CookieHandler) SetCookie(w http.ResponseWriter, name string, value str
 		// NOT Safari
 		Secure:   true,
 		SameSite: http.SameSiteStrictMode,
+	}
 
-		// Safari
-		// The following should NEVER be used when serving sites externally
-		// They are needed for local development because Safari will not
-		// allow cookies to be set against 'localhost' without them.
-		// Secure:   false,
-		// SameSite: http.SameSiteNoneMode,
+	// The following should NEVER be used when serving sites externally,
+	// but are needed for local development because Safari will not
+	// allow cookies to be set against 'localhost' without them.
+	if ch.altCookies {
+		cookie.Secure = false
+		cookie.SameSite = http.SameSiteNoneMode
 	}
 
 	// Set the cookie

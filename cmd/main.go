@@ -1,7 +1,6 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -20,13 +19,15 @@ func main() {
 	parser.AddArgument("serve", "Local web server port for viewing the database", "", false)
 	parser.AddFlag("clear-errors", "Removes errored ISBNs so they retry")
 	parser.AddFlag("single-hit", "Only call the API once per ISBN (result quality varies)")
+	parser.AddFlag("alt-cookies", "Use insecure cookie (eg for Safari on Mac)")
 	parser.ShowUsage()
 	parser.Parse(os.Args[1:])
 
-	// Check for errors
+	// Check for command line errors
 	if parser.HasErrors() {
 		parser.PrintErrors()
-		check(errors.New("errors found when parsing command line arguments"))
+		fmt.Println()
+		os.Exit(1)
 	}
 
 	// Get the arguments
@@ -34,6 +35,7 @@ func main() {
 	jsonFile := parser.GetArgument("file")
 	clearErrors := parser.GetFlag("clear-errors")
 	singleHit := parser.GetFlag("single-hit")
+	altCookies := parser.GetFlag("alt-cookies")
 
 	// Load the books from the JSON file
 	fmt.Println()
@@ -109,7 +111,7 @@ func main() {
 			check(err)
 		}
 
-		server, err := NewServer(portInt, absPath)
+		server, err := NewServer(portInt, absPath, altCookies)
 		if err != nil {
 			fmt.Println("ERROR creating server")
 			check(err)
